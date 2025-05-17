@@ -16,11 +16,11 @@ minimal_mistakes_skin: "dark" # "air", "aqua", "contrast", "dark", "dirt", "neon
 
 # Site Settings
 locale: "en-US"
-title: "n1ghtw0lf"
+title: "br4y"
 title_separator: "-"
 subtitle: # site tagline that appears below site title in masthead
-name: "Abdallah Elshinbary"
-description: "Malware Analysis - Reverse Engineering - Exploit Development"
+name: "Brayden Birch"
+description: "Security Analyst interested in malware analysis & reverse engineering."
 url: # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl: # the subpath of your site, e.g. "/blog"
 repository: # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -92,49 +92,30 @@ analytics:
 
 # Site Author
 author:
-  name: "Abdallah Elshinbary"
+  name: "Brayden Birch"
   avatar: /assets/images/site_data/avatar.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio: "Malware Analysis & Reverse Engineering Adventures."
-  # location: "Area 51"
+  bio: "Security Analyst interested in malware analysis & reverse engineering."
   email:
   links:
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:abdallahelshinbary82@gmail.com"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/_n1ghtw0lf"
-    - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/abdallah-elshinbary/"
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      url: "https://"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/n1ght-w0lf"
-    - label: "Buy Me a Coffee"
-      icon: "fas fa-mug-hot"
-      url: "https://www.buymeacoffee.com/n1ghtw0lf"
+      url: "https://github.com/brayden031/brayden031"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/braydenbirch"
 
 # Site Footer
 footer:
   links:
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      # url:
-    - label: "Facebook"
-      icon: "fab fa-fw fa-facebook-square"
-      # url:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url:
-    - label: "GitLab"
-      icon: "fab fa-fw fa-gitlab"
-      # url:
-    - label: "Bitbucket"
-      icon: "fab fa-fw fa-bitbucket"
-      # url:
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      # url:
+      url: "https://github.com/brayden031/brayden031"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/braydenbirch"
 
 # Reading Files
 include:
