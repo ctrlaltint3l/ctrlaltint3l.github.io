@@ -1,20 +1,10 @@
 # main links
 main:
-  - title: "Malware Analysis"
-    url: /categories/#malware-analysis
-  - title: "Binary Exploitation"
-    url: /categories/#binary-exploitation
+  - title: "Malware Research"
+    url: categories/#research
   - title: "CTF Writeups"
-    url: /categories/#ctf-writeups
-  - title: "Tutorials"
-    url: /categories/#tutorials
-  - title: "All Categories"
-    url: /categories
-  # - title: "Sample Posts"
-  #   url: /year-archive/
-  # - title: "Sample Collections"
-  #   url: /collection-archive/
-  # - title: "Sitemap"
-  #   url: /sitemap/
-  # - title: "Quick-Start Guide"
-  # url: https://google.com
+    url:  categories/#writeups
+  - title: "Projects"
+    url: categories/#projects
+  - title: "About Me"
+    url: /about/
