@@ -1,11 +1,15 @@
 ---
 title: "MDE Live response file extraction script"
+classes: wide
+header:
+  teaser: /assets/images/ctf-writeups/memlabs/logo.png
+ribbon: MidnightBlue
+description: "Powershell script to safely extract potentially malicious files from an endpoint by combining 7-Zip and MDE's live response getfile feature."
 categories:
   - Project
 tags:
   - Project
   - MDE
-
 link: github.com/brayden031/MDE_Extraction_Script
 ---
 
