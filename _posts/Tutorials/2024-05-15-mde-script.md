@@ -2,7 +2,7 @@
 title: "MDE Live response file extraction script"
 classes: wide
 header:
-  teaser: /assets/images/projects/mde.jpg
+  teaser: /assets/images/projects/mde2.jpg
 ribbon: MidnightBlue
 description: "Powershell script to safely extract potentially malicious files from an endpoint by combining 7-Zip and MDE's live response getfile feature."
 categories:
