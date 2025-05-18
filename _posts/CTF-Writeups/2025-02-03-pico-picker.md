@@ -4,7 +4,7 @@ classes: wide
 header:
   teaser: /assets/images/ctf-writeups/utctf2020/logo.png
 ribbon: ForestGreen
-description: "walkthrough for the Picker I/II/III/IV series that consist of three reverse engineering and one binary exploit challenge."
+description: "Walkthrough for the Picker I/II/III/IV series that consist of three reverse engineering and one binary exploit challenge."
 categories:
   - CTF Writeup
 tags:
