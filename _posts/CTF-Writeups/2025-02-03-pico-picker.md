@@ -2,7 +2,7 @@
 title: "PicoCTF: Picker I/II/III/IV {Medium} {Reverse engineering & Binary exploit}"
 classes: wide
 header:
-  teaser: /assets/images/ctf-writeups/pico-picker.png
+  teaser: /assets/images/ctf-writeups/pico-picker.jpg
 ribbon: ForestGreen
 description: "Walkthrough for the Picker I/II/III/IV series that consist of three reverse engineering and one binary exploit challenge."
 categories:
@@ -21,7 +21,7 @@ This is a walkthrough for the Picker I/II/III/IV series that consist of three re
 
 1️⃣ **Downloading the source code**
 - Reviewing the source code shows the function win() which prints out the contents of ‘flag.txt’ in hex format.
-![Picker screenshot](/assets/images/picker-1.webp)
+![Picker screenshot](/assets/images/ctf-writeups/pico/picker/picker-1.webp)
 
 - The comment in this function states that this functionality can be replicated by creating a ‘flag.txt’ file within the directory of the picker python script
   
@@ -44,7 +44,7 @@ Additionally, the function source code uses — eval(user_input + ‘()’)” w
 
 3️⃣ **Taking this information I then connected to the service using:**
 
-![Picker screenshot](/assets/images/picker-2.webp)
+![Picker screenshot](/assets/images/ctf-writeups/pico/picker/picker-2.webp)
 
 ```ruby
 Output:
@@ -63,7 +63,7 @@ print(bytes.fromhex(hex_values.replace(“0x”, “”).replace(“ “, “”
 
 1️⃣ **Downloading the source reveals this is a similar python script to the previous except for some sanitisation changes:**
 
-![Picker screenshot](/assets/images/picker-3.webp)
+![Picker screenshot](/assets/images/ctf-writeups/pico/picker/picker-3.webp)
 
 - The new filter (user_input) function verifies the content of the users input to exclude references to win which is the function used to read the ‘flag.txt’ file. This makes it apparent that we need to bypass this new function to be able to still call win().
   
@@ -75,7 +75,7 @@ print(bytes.fromhex(hex_values.replace(“0x”, “”).replace(“ “, “”
   
 3️⃣ **Testing concatenated payload**
 
-![Picker screenshot](/assets/images/picker-4.webp)
+![Picker screenshot](/assets/images/ctf-writeups/pico/picker/picker-4.webp)
 
 - Output:
 ```ruby
@@ -97,7 +97,7 @@ print(bytes.fromhex(hex_values.replace(“0x”, “”).replace(“ “, “”
   
 3️⃣ **By using the write_variable() function we can pass it the value ‘win’. Then when we call this using read_variable() it will execute the win() function and output the flag.txt data.**
 
-![Picker screenshot](/assets/images/picker-5.webp)
+![Picker screenshot](/assets/images/ctf-writeups/pico/picker/picker-5.webp)
 
 ```ruby
 0x70 0x69 0x63 0x6f 0x43 0x54 0x46 0x7b 0x37 0x68 0x31 0x35 0x5f 0x31 0x35 0x5f 0x77 0x68 0x34 0x37 0x5f 0x77 0x33 0x5f 0x67 0x33 0x37 0x5f 0x77 0x31 0x37 0x68 0x5f 0x75 0x35 0x33 0x72 0x35 0x5f 0x31 0x6e 0x5f 0x63 0x68 0x34 0x72 0x67 0x33 0x5f 0x32 0x32 0x36 0x64 0x64 0x32 0x38 0x35 0x7d
@@ -112,7 +112,7 @@ print(bytes.fromhex(hex_values.replace(“0x”, “”).replace(“ “, “”
 1️⃣ **The final challenge of this series was a different category (binary exploitation). I started by reviewing the source code of the binary file.**
 - Opening up the source code we once again see the win() function present
   
-![Picker screenshot](/assets/images/picker-6.webp)
+![Picker screenshot](/assets/images/ctf-writeups/pico/picker/picker-6.webp)
 
 - This implies we will once again need to get the program to execute this function in order to read the flag.txt file contained on the server.
 - The program asks for a hex value to be inputted for the program to jump to.
@@ -120,21 +120,21 @@ print(bytes.fromhex(hex_values.replace(“0x”, “”).replace(“ “, “”
 2️⃣ Binary file analysis
 - Based on this I opened the file in binary ninja to try and find the location of the win function.
   
-![Picker screenshot](/assets/images/picker-7.webp)
+![Picker screenshot](/assets/images/ctf-writeups/pico/picker/picker-7.webp)
 
 - The win function was stored at ‘0040129e’
   
 3️⃣ Attempting input
 - As instructed by the program the input should exclude ‘0x’ therefore we pass it ‘40129e’
   
-![Picker screenshot](/assets/images/picker8.webp)
+![Picker screenshot](/assets/images/ctf-writeups/pico/picker/picker8.webp)
 
 - This shows the input caused the program to successfully call the win function and attempt to read the file. Although this was our local binary so therefore failed.
   
 4️⃣ Passing input logic
 - The final part was to take our working input and pass it to the server that contained the flag.txt file.
   
-![Picker screenshot](/assets/images/picker-9.webp)
+![Picker screenshot](/assets/images/ctf-writeups/pico/picker/picker-9.webp)
 
 - This read the file and outputted the final flag of this challenge series
 - 🚩 Flag: **picoCTF{n3v3r_jump_t0_u53r_5uppl13d_4ddr35535_01672a61}**
