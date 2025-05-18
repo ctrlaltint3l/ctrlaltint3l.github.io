@@ -92,7 +92,7 @@ analytics:
 # Site Author
 author:
   name: "Brayden Birch"
-  avatar: /assets/images/site_data/test.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar: /assets/images/site_data/img.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio: "Security Analyst interested in malware analysis & reverse engineering."
   email:
   links:
