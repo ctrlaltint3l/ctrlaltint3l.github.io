@@ -2,7 +2,7 @@
 title: "PicoCTF: Picker I/II/III/IV {Medium} {Reverse engineering & Binary exploit}"
 classes: wide
 header:
-  teaser: /assets/images/ctf-writeups/utctf2020/logo.png
+  teaser: /assets/images/ctf-writeups/pico-picker.png
 ribbon: ForestGreen
 description: "Walkthrough for the Picker I/II/III/IV series that consist of three reverse engineering and one binary exploit challenge."
 categories:

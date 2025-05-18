@@ -2,7 +2,7 @@
 title: "MetaCTF: Flash CTF"
 classes: wide
 header:
-  teaser: /assets/images/ctf/meta/marchmeta.png
+  teaser: /assets/images/ctf-writeups/meta-march.jpg
 ribbon: ForestGreen
 description: "CTF writeups for two of the challenges in the MetaCTF that was hosted on the 27/03."
 categories:
