@@ -49,7 +49,7 @@ Our intelligence tells us she encoded a flag in one of her posts using Base32, c
 
 - 1️⃣ The script given to encode the plain text was as follows:
 
-![MetaCTF screenshot](//assets/images/ctf-writeups/meta/march/meta_march_4.webp)
+![MetaCTF screenshot](/assets/images/ctf-writeups/meta/march/meta_march_4.webp)
 
 - 2️⃣ Knowing this seems to be a relatively straight forward script and given the time constraints resorted to GPT to produce a reverse brute force script:
 
@@ -65,7 +65,7 @@ Our intelligence tells us she encoded a flag in one of her posts using Base32, c
 
 ![MetaCTF screenshot](/assets/images/ctf-writeups/meta/march/meta_march_6.webp)
 
-- 🚩 MetaCTF{tw0_w4y_funct10n_m0r3_l1k3_i7}
+- 🚩 **MetaCTF{tw0_w4y_funct10n_m0r3_l1k3_i7}**
 - Thanks for reading, worth noting I was extremely close to getting the reverse engineering “collecting seashells” challenge had the understanding just didn’t get the exploit working in time..
 
 ![MetaCTF screenshot](/assets/images/ctf-writeups/meta/march/meta_march_7.webp)

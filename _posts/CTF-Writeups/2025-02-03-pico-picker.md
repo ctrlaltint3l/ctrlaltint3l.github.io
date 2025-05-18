@@ -11,6 +11,7 @@ tags:
   - CTF
   - Writeup
   - Reverse Engineer
+toc: true
 ---
 
 # Overview
@@ -21,6 +22,7 @@ This is a walkthrough for the Picker I/II/III/IV series that consist of three re
 
 1️⃣ **Downloading the source code**
 - Reviewing the source code shows the function win() which prints out the contents of ‘flag.txt’ in hex format.
+
 ![Picker screenshot](/assets/images/ctf-writeups/pico/picker/picker-1.webp)
 
 - The comment in this function states that this functionality can be replicated by creating a ‘flag.txt’ file within the directory of the picker python script
@@ -117,21 +119,21 @@ print(bytes.fromhex(hex_values.replace(“0x”, “”).replace(“ “, “”
 - This implies we will once again need to get the program to execute this function in order to read the flag.txt file contained on the server.
 - The program asks for a hex value to be inputted for the program to jump to.
   
-2️⃣ Binary file analysis
+2️⃣ **Binary file analysis**
 - Based on this I opened the file in binary ninja to try and find the location of the win function.
   
 ![Picker screenshot](/assets/images/ctf-writeups/pico/picker/picker-7.webp)
 
 - The win function was stored at ‘0040129e’
   
-3️⃣ Attempting input
+3️⃣ **Attempting input**
 - As instructed by the program the input should exclude ‘0x’ therefore we pass it ‘40129e’
   
 ![Picker screenshot](/assets/images/ctf-writeups/pico/picker/picker8.webp)
 
 - This shows the input caused the program to successfully call the win function and attempt to read the file. Although this was our local binary so therefore failed.
   
-4️⃣ Passing input logic
+4️⃣ **Passing input logic**
 - The final part was to take our working input and pass it to the server that contained the flag.txt file.
   
 ![Picker screenshot](/assets/images/ctf-writeups/pico/picker/picker-9.webp)
