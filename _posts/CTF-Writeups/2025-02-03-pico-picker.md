@@ -3,7 +3,7 @@ title: "PicoCTF: Picker I/II/III/IV {Medium} {Reverse engineering & Binary explo
 classes: wide
 header:
   teaser: /assets/images/ctf-writeups/pico-picker.jpg
-ribbon: ForestGreen
+ribbon: black
 description: "Walkthrough for the Picker I/II/III/IV series that consist of three reverse engineering and one binary exploit challenge."
 categories:
   - CTF Writeup
