@@ -1,5 +1,5 @@
 ---
-title: "VARALYZE"
+title: "Varalyze"
 classes: wide
 header:
   teaser: /assets/images/projects/varalyze/logo_darkmode.png
