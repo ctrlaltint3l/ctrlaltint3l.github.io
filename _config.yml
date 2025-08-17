@@ -96,9 +96,18 @@ author:
   bio: "Threat Research"
   email:
   links:
-    - label: "Website"
+    - label: "@polygonben - blog"
       icon: "fas fa-fw fa-link"
       url: "https://polygonben.github.io/"
+    - label: "@polygonben - X"
+      icon: "fas fa-fw fa-link"
+      url: "https://x.com/polygonben"
+    - label: "@xorJosh - blog"
+      icon: "fas fa-fw fa-link"
+      url: "https://www.joshallman.co.uk/"
+    - label: "@xorJosh - X"
+      icon: "fas fa-fw fa-link"
+      url: "https://x.com/xorJosh"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/ctrlaltint3l"
@@ -107,13 +116,21 @@ author:
 # Site Footer
 footer:
   links:
-    - label: "Website"
+    - label: "@polygonben - blog"
       icon: "fas fa-fw fa-link"
       url: "https://polygonben.github.io/"
+    - label: "@polygonben - X"
+      icon: "fas fa-fw fa-link"
+      url: "https://x.com/polygonben"
+    - label: "@xorJosh - blog"
+      icon: "fas fa-fw fa-link"
+      url: "https://www.joshallman.co.uk/"
+    - label: "@xorJosh - X"
+      icon: "fas fa-fw fa-link"
+      url: "https://x.com/xorJosh"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/ctrlaltint3l"
-
 
 
 # Reading Files
