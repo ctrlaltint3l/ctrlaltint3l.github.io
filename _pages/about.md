@@ -1,8 +1,6 @@
 ---
-title: "About Me"
+title: "About Us"
 permalink: /about/
 layout: single
 ---
-> I’m a Cyber Security Analyst with a passion for deep‑dive malware research, hands‑on CTF challenges and building practical security projects. Responsible for defending enterprise networks conducting triaging, threat hunting and incident response with a keen side interest in malware analysis and reversing.
-> <br><br> I focus on translating complex threats into clear, actionable insights and tooling. Explore my work, learn from my writeups and connect with me.
-> <br><br> I am also currently looking for a team to join to compete in CTFs, feel free to reach out to me!
+> In our day job, we both work at a security vendor, dismantling threats. In our spare time, we like to poke at adversary infrastructure. This research is purely personal and not affiliated with our emplyoer. 
