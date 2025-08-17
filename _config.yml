@@ -16,11 +16,11 @@ minimal_mistakes_skin: "dark" # "air", "aqua", "contrast", "dark", "dirt", "neon
 
 # Site Settings
 locale: "en-US"
-title: "br4y"
+title: "Ctrl-Alt-Int3l"
 title_separator: "-"
 subtitle: # site tagline that appears below site title in masthead
-name: "Brayden Birch"
-description: "Security Analyst interested in malware analysis & reverse engineering."
+name: "@polygonben / @xorjosh"
+description: "Threat Research"
 url: # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl: # the subpath of your site, e.g. "/blog"
 repository: # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -91,30 +91,30 @@ analytics:
 
 # Site Author
 author:
-  name: "Brayden Birch"
+  name: "@polygonben / @xorjosh"
   avatar: /assets/images/site_data/img.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio: "Security Analyst interested in malware analysis & reverse engineering."
+  bio: "Threat Research"
   email:
   links:
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      url: "https://"
+      url: "https://polygonben.github.io/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/brayden031/brayden031"
-    - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/braydenbirch"
+      url: "https://github.com/ctrlaltint3l"
+
 
 # Site Footer
 footer:
   links:
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      url: "https://polygonben.github.io/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/brayden031/brayden031"
-    - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/braydenbirch"
+      url: "https://github.com/ctrlaltint3l"
+
+
 
 # Reading Files
 include:
