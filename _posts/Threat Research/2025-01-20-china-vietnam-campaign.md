@@ -6,7 +6,7 @@ header:
 ribbon: black
 description: "Chinese threat actor targets Vietnemse universities in extensive campaign."
 categories:
-  - CTF Writeup
+  - Threat Research
 tags:
   - Threat Research
   - Malware Analysis
