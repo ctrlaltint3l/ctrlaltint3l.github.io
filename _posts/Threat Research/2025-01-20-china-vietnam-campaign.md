@@ -576,7 +576,7 @@ We can see this second stage will enumerate the operating systems architecture a
 `07f79946tcp.exe`, the third stage, reaches out to the C2 server, `microsoft-symantec[.]art:8848`, for additional payloads or stages to establish persistent Command and Control. We were unable to retrieve these or reverse engineer the protocol. 
 
 
-## VShell - Windows one-liner
+## VShell - Linux one-liner
 
 ### Stage 1 
 
