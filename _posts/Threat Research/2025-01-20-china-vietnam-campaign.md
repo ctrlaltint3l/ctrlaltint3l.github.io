@@ -259,7 +259,7 @@ dns-beacon {
 [...REDACTED...]
 ```
 
-## Simulating Cat Cobalt Strike
+## Emulating Cobalt Strike Server
 
 As we've recovered **all** relevant databases and binaries surrounding the Cobalt Strike server, we can run the binary using the threat actors configuration and authenticate locally. We will not be receiving call-backs from victims, but, we can interact with the GUI and reporting features built in. 
 
@@ -267,6 +267,20 @@ As we've recovered **all** relevant databases and binaries surrounding the Cobal
 
 
 [![2](/assets/images/china/listeners.png)](/assets/images/china/listeners.png){: .full}
+
+From the above, we can see the Cobalt Strike server has got 2 configured listeneres, on ports `2087` and `2099` respectively. We can see these were active on Censys:
+
+[![2](/assets/images/china/censys.png)](/assets/images/china/censys.png){: .full}
+
+Thankfully, as a result of simulating the adversaries Cobalt Strike server in a sandbox, we can also leverage the in-built "Reporting" features to retrieve a forensic-timeline of adverserial activity on each host. This "Reporting" features also mapped the commands and actions performed by the adversary to the MITRE Framework - with a fantastic analysis of the intrusion by the adversaries own C2 server ;) 
+
+[![2](/assets/images/china/ioc_http.png)](/assets/images/china/ioc_http.png){: .full}
+
+From the above, we can see details pertaining to the configuration of the beacon and example HTTP traffic. 
+
+
+
+
 
 # Cobalt Strike Post-Exploitation
 
