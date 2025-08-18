@@ -7,4 +7,3 @@ layout: single
 
 Contact: `c0baltstrik3d [@] gmail [.] com`
 
-
