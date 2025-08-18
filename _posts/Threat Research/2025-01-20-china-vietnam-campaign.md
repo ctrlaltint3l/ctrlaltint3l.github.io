@@ -36,7 +36,7 @@ When hunting for interesting open-directories, I always keep an eye out for the 
 
 When we opened the [.bash_history](https://github.com/ctrlaltint3l/intelligence/blob/main/VietnameseCampaign/Artefacts/.bash_history) file on this host, we knew we were in for fun:
 
-[![1](/assets/images/china/bash_history.png)](/assets/images/china/bash_history.png){: .full}
+[![1](/assets/images/china/image2.png)](/assets/images/china/image2.png){: .full}
 
 
 * Threat actor downloading Chinese language pack
