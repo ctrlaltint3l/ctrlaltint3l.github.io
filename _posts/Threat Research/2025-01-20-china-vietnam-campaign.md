@@ -278,9 +278,13 @@ Thankfully, as a result of simulating the adversaries Cobalt Strike server in a 
 
 From the above, we can see details pertaining to the configuration of the beacon and example HTTP traffic. 
 
+[![2](/assets/images/china/exploitation.png)](/assets/images/china/exploitation.png){: .full}
 
+Additionally, we can see evidence of execution of a Local Privilege Escalation exploit - [AppxPotato](https://github.com/PN-Tester/AppxPotato) - on multiple hosts. 
 
+[![2](/assets/images/china/processhollowing2.png)](/assets/images/china/processhollowing2.png){: .full}
 
+The reporting features exposed all payloads injected using process hollowing. 
 
 # Cobalt Strike Post-Exploitation
 
