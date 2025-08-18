@@ -14,7 +14,7 @@ tags:
 toc: true
 ---
 
-## Open Directories
+# Open Directories
 
 During malware execution chains or hands-on-keyboard intrusions, adversaries will often download additional malware or tooling on the fly, frequently using the HTTP protocol. Adversaries may achieve this by setting a simple Python HTTP server, `python -m http.server 80`, and then accessing the files via a regular HTTP request. 
 
@@ -82,7 +82,7 @@ Analysis of the `.bash_history` file reveals the threat actor installing relevan
 
 However, we have identified evidence of a **modified** Cobalt Strike server on this box. Thankfully, exploring the open-directory, we can recover all relevant Cobalt Strike server data that reveals true intent. 
 
-### Cobalt Strike
+# Cobalt Strike
 
 Cobalt Strike is a commercial red-team tool originally built for penetration testers. It provides features like beacon implants, post-exploitation modules, and C2 (command-and-control) management. While designed for defenders to simulate adversaries, cracked versions of Cobalt Strike have been heavily abused by cybercriminals and state-sponsored threat actors worldwide. It’s often used after initial access to move laterally, escalate privileges, and stage payloads.
 
@@ -259,11 +259,11 @@ dns-beacon {
 [...REDACTED...]
 ```
 
-#### Cobalt Strike Post-Exploitation
+## Cobalt Strike Post-Exploitation
 
 This threat actor appeared to use Cobalt Strike for persistence, privilege escalation, defence evasion, lateral movement and information harvesting. From Cobalt Strike logs, we were able to ascertain commands run and tooling executed by the threat actor: 
 
-#### Misc
+### Misc
 
 ```
 C:\ProgramData\mdm.txt
