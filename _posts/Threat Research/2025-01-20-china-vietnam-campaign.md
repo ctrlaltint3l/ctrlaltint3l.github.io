@@ -259,7 +259,7 @@ dns-beacon {
 [...REDACTED...]
 ```
 
-## Emulating Cobalt Strike Server
+## Emulating the Adversaries Cobalt Strike Server
 
 As we've recovered **all** relevant databases and binaries surrounding the Cobalt Strike server, we can run the binary using the threat actors configuration and authenticate locally. We will not be receiving call-backs from victims, but, we can interact with the GUI and reporting features built in. 
 
