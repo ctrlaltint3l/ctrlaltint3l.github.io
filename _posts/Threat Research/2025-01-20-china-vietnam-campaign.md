@@ -36,7 +36,7 @@ When hunting for interesting open-directories, I always keep an eye out for the 
 
 When we opened the [.bash_history](https://github.com/ctrlaltint3l/intelligence/blob/main/VietnameseCampaign/Artefacts/.bash_history) file on this host, we knew we were in for fun:
 
-[![1](/assests/images/bash_history.png)](/assests/images/bash_history.png){: .full}
+[![1](/assets/images/bash_history.png)](/assets/images/bash_history.png){: .full}
 
 
 * Threat actor downloading Chinese language pack
@@ -88,7 +88,7 @@ Cobalt Strike is a commercial red-team tool originally built for penetration tes
 
 We observed the threat actor leveraging an open-source modified and cracked Cobalt Strike client and server, "Cat Cobalt Strike (Kunkun Version)":
 
-[![1](/assests/images/kunkun.png)](/assests/images/kunkun.png){: .full}
+[![1](/assets/images/kunkun.png)](/assets/images/kunkun.png){: .full}
 
 This modified client and server is advertised to have the following capabilities:
 
@@ -97,7 +97,7 @@ This modified client and server is advertised to have the following capabilities
 * Fixes known vulnerability CVE-2022-39197
 
 
-[![2](/assests/images/image4.png)](/assests/images/image4.png){: .full}
+[![2](/assets/images/image4.png)](/assets/images/image4.png){: .full}
 
 From a detailed analysis of all the logs, databases, downloads, and other files within this directory, we were able to identify:
 
