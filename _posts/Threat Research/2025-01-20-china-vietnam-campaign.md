@@ -521,7 +521,7 @@ Aside from using Cobalt Strike for C2, the adversary has heavily leveraged `VShe
 
 From the file `/vshell/v_windows_amd64/db/data.db` we were able to uncover the full list of the VShell victims. Unlike the CobaltStrike C2, the VShell beacons were reaching straight out to the C2 server, and we were able to recover real victim IP addresses. Additionally, we can see the threat actor had “named” the various victims by their domain name. This made attributing victims incredibly easily. 
 
-Thankfully for us, we were able to access the VShell dashboard for further intelligence:
+Thankfully for us, using the same emulation method used for Cobalt Strike, we were able to access the VShell dashboard for further intelligence:
 
 [![2](/assets/images/china/vshell.png)](/assets/images/china/vshell.png){: .full}
 
