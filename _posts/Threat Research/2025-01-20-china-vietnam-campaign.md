@@ -124,4 +124,49 @@ In order to retrieve the full Cobalt Strike beacon victim list, credentials, and
 
 From the `beacon.db` file, we were able to identify 63 unique workstations that have been infected with a Cobalt Strike beacon. The first registered beacon was the host `WIN-K65K8DF8FOD`, which was beaconing from the Chinese IP address ‘27.150.114[.]115’. This was a test host created by the threat actor, exposing the adversaries public IP address. 
 
-The 62 registered beacons that followed this were all beaconing from various Cloudflare AS 13335 IP addresses. Why is this happening? We can look at the file `/CS/server/CatServer.Properties`
+The 62 registered beacons that followed this were all beaconing from various Cloudflare AS 13335 IP addresses. Why is this happening? We can look at the file [`/CS/server/CatServer.Properties`](https://github.com/ctrlaltint3l/intelligence/blob/main/VietnameseCampaign/CobaltStrike/CatServer.properties):
+
+```
+# ??????,????????.(?????????cs??,???????,?????TeamSever)
+CatServer.Version = 2.16667
+# TeamSever端口 
+CatServer.port = 23456
+# 证书路径
+CatServer.store = cfcert.store
+# 证书密码
+CatServer.store-password = UPNV7J6rqSbc3Ay
+# 保持127就行
+CatServer.host = 127.0.0.1
+# teamserver密码
+CatServer.password = dsad2dffas1
+CatServer.profile-name = cobaltstrike
+# ???profile文件路径
+CatServer.profile = CDN.profile
+
+CatServer.auth = false
+CatServer.authlog = false
+
+#谷歌验证码配置 在微信小程序可直接获取 
+CatServer.googleauth = false
+CatServer.googlekey = YOTPPRZ4RQ75QNKKE65GXE6BQBSQDVQJ
+CatServer.safecode = 123456
+
+(Translated: Google verification code config — can be obtained directly via the WeChat mini-program)
+
+# AES iv 
+CatServer.Iv = abcdefghijklmnop
+
+# stager配置 建议小改
+stager.checksum-num = 400
+stager.x86-num = 100
+stager.x86-uri-len = 6
+stager.x64-num = 105
+stager.x64-uri-len = 8
+
+```
+
+The file `CatServer.Properties` is a configuration file for Cat Cobalt Strike Kun Kun that provides operational insight into how the teamserver was configured. Specifically, we can see the password for the teamserver being `dsad2dffas1` and the port it listening on being `23456`.
+
+Additionally, we can see the file [`/CS/server/cfcert.store`](https://github.com/ctrlaltint3l/intelligence/blob/main/VietnameseCampaign/CobaltStrike/cfcert.store):
+
+[![2](/assets/images/china/image3.png)](/assets/images/china/image3.png){: .full}
