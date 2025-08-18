@@ -596,4 +596,14 @@ We managed to recover evidence that the threat actor delivered a payload, `test.
 
 [![2](/assets/images/china/test.resources_stage2.png)](/assets/images/china/test.resources_stage2.png){: .full}
 
-### Stage 2
+Viewing the above serialized object file, `test.resources`, we can see it contains additional code, that would be executed automatically on deserialization, that is currently Base64 encoded and Gzip compressed.
+
+We can use [this](https://gchq.github.io/CyberChef/#recipe=From_Base64('A-Za-z0-9%2B/%3D',true,false)Gunzip()) CyberChef receipe to base64 decode and gunzip, giving us a `MZ` header, indicating we have an executable. 
+
+[![2](/assets/images/china/decode.png)](/assets/images/china/decode.png){: .full}
+
+### Stage 2 (Web-shell)
+
+We can do some initial triage and see this is a .NET binary!
+
+[![2](/assets/images/china/webshell_die.png)](/assets/images/china/webshell_die.png){: .full}
