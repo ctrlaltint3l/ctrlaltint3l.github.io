@@ -496,3 +496,5 @@ Thankfully for us, we were able to access the VShell dashboard for further intel
 As you can see, by default, the dashboard is in Chinese. All future screenshots have been translated. 
 
 [![2](/assets/images/china/image12.png)](/assets/images/china/image12.png){: .full}
+
+[![2](/assets/images/china/image11.png)](/assets/images/china/image11.png){: .full}
