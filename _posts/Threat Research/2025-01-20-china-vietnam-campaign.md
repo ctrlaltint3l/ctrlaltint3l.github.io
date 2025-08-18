@@ -274,6 +274,8 @@ From the above, we can see the Cobalt Strike server has got 2 configured listene
 
 Thankfully, as a result of simulating the adversaries Cobalt Strike server in a sandbox, we can also leverage the in-built "Reporting" features to retrieve a forensic-timeline of adverserial activity on each host. This "Reporting" features also mapped the commands and actions performed by the adversary to the MITRE Framework - with a fantastic analysis of the intrusion by the adversaries own C2 server ;) 
 
+[![2](/assets/images/china/cat.png)](/assets/images/china/cat.png){: .full}
+
 [![2](/assets/images/china/ioc_http.png)](/assets/images/china/ioc_http.png){: .full}
 
 From the above, we can see details pertaining to the configuration of the beacon and example HTTP traffic. 
