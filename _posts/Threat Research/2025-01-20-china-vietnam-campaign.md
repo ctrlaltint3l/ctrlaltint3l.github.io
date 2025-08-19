@@ -586,3 +586,25 @@ We can see this second stage will enumerate the operating systems architecture a
 ```
 
 * We can see this uses `curl` or `wget` to downloaded the payload `hxxp://microsoft-symantec[.]art:8848/slt` and execute it with `sh`.
+
+## VShell - Plugins
+
+VShell supports the use of plugins, which can be executed on any of the selected clients. We can see what options that can be used on one of the clients(with the help of the browser translating the page) and any specified arguments we would like to add for said plugin:
+[![3](/assets/images/china/vshell_plugins.png)](/assets/images/china/vshell_plugins.png){: .full}
+
+These plugins are located at `/vshell/v_linux_amd64/plugins` with the following hashes:
+```
+bf7120a63483a2e4300a4d1405ac7525f11dd1f6d6a7120767bc42566da35891  AddUser.dll
+f34bd1d485de437fe18360d1e850c3fd64415e49d691e610711d8d232071a0b1  fscan.x64.elf
+44cc5d20ba8b692fd10d358aab5694c21caf1c63e7a1ecb0f989010b7dfa830a  gost.x64.exe
+51c9d895c013a402d42841f52bae0bc5525b085d11ad2934f64068563a719132  gost.x64.so
+61c0810a23580cf492a6ba4f7654566108331e7a4134c968c2d6a05261b2d8a1  mimikatz.x64.exe
+```
+
+At the time of this writing, all plugins are accessible within VirusTotal.
+
+### Notifications
+
+Another interesting piece of information with VShell is the ability to integrate with third-party services like `WeChat`. This is likely for SMS/Push notifications when clients check-in, task completion, etc.
+
+[![4](/assets/images/china/vshell_notifs.png)](/assets/images/china/vshell_notifs.png){: .full}
