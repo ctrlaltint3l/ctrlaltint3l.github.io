@@ -627,7 +627,7 @@ We can look at the Ghidra psuedo-code and see identical capabilities as describe
 
 ```c
 ///[...REDACTED...]
-  iVar1 = access("/tmp/log_de.log",0);             // Check for prior infection
+  iVar1 = access("/tmp/log_de.log",0);             // Check for "kill switch"? or prior infection?
   if (iVar1 != 0) {
     pcVar9 = "microsoft-symantec.art";
 ///[...REDACTED...]
