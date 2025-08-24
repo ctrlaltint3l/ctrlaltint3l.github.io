@@ -1,10 +1,6 @@
 # main links
 main:
-  - title: "Malware Research"
+  - title: "Threat Research"
     url: categories/#research
-  - title: "CTF Writeups"
-    url:  categories/#writeups
-  - title: "Projects"
-    url: categories/#projects
-  - title: "About Me"
+  - title: "About Us"
     url: /about/

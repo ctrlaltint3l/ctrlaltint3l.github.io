@@ -16,11 +16,11 @@ minimal_mistakes_skin: "dark" # "air", "aqua", "contrast", "dark", "dirt", "neon
 
 # Site Settings
 locale: "en-US"
-title: "br4y"
+title: "Ctrl-Alt-Int3l"
 title_separator: "-"
 subtitle: # site tagline that appears below site title in masthead
-name: "Brayden Birch"
-description: "Security Analyst interested in malware analysis & reverse engineering."
+name: "@polygonben / @xorjosh"
+description: "Threat Research"
 url: # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl: # the subpath of your site, e.g. "/blog"
 repository: # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -84,37 +84,42 @@ social:
 
 # Analytics
 analytics:
-  provider: "google-universal" # false (default), "google", "google-universal", "custom"
+  provider: "google-gtag" # false (default), "google", "google-universal", "custom"
   google:
-    tracking_id: "UA-165194559-1"
+    tracking_id: "G-S4H3NGY8ZW"
     anonymize_ip: # true, false (default)
 
 # Site Author
 author:
-  name: "Brayden Birch"
+  name: "Ctrl-Alt-Int3l"
   avatar: /assets/images/site_data/img.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio: "Security Analyst interested in malware analysis & reverse engineering."
+  bio: "Threat Research"
   email:
   links:
-    - label: "Website"
+    - label: "@polygonben"
       icon: "fas fa-fw fa-link"
-      url: "https://"
+      url: "https://x.com/polygonben"
+    - label: "@0xffaraday"
+      icon: "fas fa-fw fa-link"
+      url: "https://x.com/0xffaraday"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/brayden031/brayden031"
-    - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/braydenbirch"
+      url: "https://github.com/ctrlaltint3l"
+
 
 # Site Footer
 footer:
   links:
+    - label: "@polygonben"
+      icon: "fas fa-fw fa-link"
+      url: "https://x.com/polygonben"
+    - label: "@@0xffaraday"
+      icon: "fas fa-fw fa-link"
+      url: "https://x.com/0xffaraday"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/brayden031/brayden031"
-    - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/braydenbirch"
+      url: "https://github.com/ctrlaltint3l"
+
 
 # Reading Files
 include:
