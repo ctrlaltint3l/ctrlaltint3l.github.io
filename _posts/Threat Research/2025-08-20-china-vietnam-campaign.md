@@ -951,29 +951,35 @@ run
 
 # Attribution 
 
-Based on the evidence recovered from the exposed open-directory and subsequent analysis of the tooling, infrastructure, and victimology, we assess with high confidence that this campaign is linked to a China-nexus threat actor that is not financially motivated:
+Based on the evidence recovered from the exposed open-directory and subsequent analysis of the tooling, infrastructure, and victimology, we believe that this campaign is linked to a China based threat actor.
 
 * Victimology: The campaign is *highly targeted* against Vietnamese universities and educational institutions, with **at least** 25 unique organizations compromised. This aligns with long-standing Chinese strategic intelligence priorities in Southeast Asia, particularly around academia and technology research.
 
-* Infrastructure and OPSEC failures: The adversary operated Cobalt Strike and VShell servers using domains such as `microsoft-symantec[.]art` and `micrcs.microsoft-defend[.]club`, hosted behind Cloudflare. Open-directory leaks revealed the operators’ own IP addresses, some resolving to Chinese ISPs, including a test beacon registered from `27.150.114[.]115`. 
+* Infrastructure and OPSEC failures: Cobalt Striked passed C2 via Cloudflare although VShell was direct to the C2 server. Open-directory leaks revealed the operators’ own IP addresses, all resolving to Chinese ISPs, including a test beacon registered from `27.150.114[.]115`.  
 
 * Language and cultural indicators: The `.bash_history` log shows installation of the Simplified Chinese language pack, and configuration files such as `CatServer.Properties` contained Chinese comments and references (e.g., WeChat mini-program integration for 2FA notifications).
 
-The tactics, techniques, and procedures (TTPs) we observed in this campaign show notable similarities to those documented by Trend Micro in their [public reporting on Earth Lamia](https://www.trendmicro.com/en_us/research/25/e/earth-lamia.html). Specifically, both operations leveraged:
+The tactics, techniques, and procedures (TTPs) we observed in this campaign show some similarities to those documented by Trend Micro in their [public reporting on Earth Lamia](https://www.trendmicro.com/en_us/research/25/e/earth-lamia.html). Specifically, both operations leveraged:
 
-* Deployment of Cobalt Strike and VShell side-by-side for C2
+* Using `sqlmap` to identify novel SQL injection vulnerabilties
+* Exploiting known CVEs in target web applications
+* Using `certutil.exe` to download additional payloads
+* Deployment of Cobalt Strike and VShell
 * Deploying multiple Chinese webshells for persistence
 * Leverage POC privilege escalations exploits like `GodPotato` or `JuicyPotato`
 * Leveraging custom Chinese tooling `fscan` for network discovery
 * Discovery of DCs using `nltest.exe` and `net.exe`
-* Using scheduled tasks for persistence
+* Using open-source Chinese-proxy tooling from Github 
+* Using scheduled tasks for backdoor persistence
 * Exploiting novel SQL injection vulnerabilities in target web severs 
 
 ## Conclusion
 
-This wasn’t a smash-and-grab. The attackers built themselves a whole safety net - RDP tunnels, scheduled tasks, at least two different C2 frameworks running side by side, and layers of webshells all stitched into victim networks. Combined with the scale of universities hit, the heavy use of Chinese red-team tools, and the overlap with Earth Lamia’s TTPs, the goal here was information gathering across Vietnam’s education sector by a persistent Chinese actor.
+These threat actors desperately wanted long-term persistent access to victim Vietnemse unniversities. The attackers built themselves a whole safety net of persistence mechnaisms; RDP tunnels, scheduled tasks, multiple C2s, and layers of webshells all stitched into 25 victim networks within 2 months and 7 days*. This shows a level of determination and sophistication that we typically do not observe with finanically motivated actors, like ransomware or extortion groups.
 
 > If you’ve read this far, you’re clearly interested in the activities of this adversary. If you have additional information to share, or if you’d like further details about our research, please feel free to reach out to us at `c0baltstrik3d [@] gmail [.] com`. We welcome collaboration and the exchange of threat intelligence.
+
+* Although the Cobalt Strike timeline goes back just over 4 months, the actor was only operating and started compromising real hosts from 10/06/2025 04:10 to 17/08/2025 13:01.
 
 # IOCs
 
