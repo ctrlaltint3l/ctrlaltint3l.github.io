@@ -19,7 +19,7 @@ locale: "en-US"
 title: "Ctrl-Alt-Int3l"
 title_separator: "-"
 subtitle: # site tagline that appears below site title in masthead
-name: "@polygonben / @xorjosh"
+name: "Ctrl-Alt-Int3l"
 description: "Threat Research"
 url: # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl: # the subpath of your site, e.g. "/blog"
