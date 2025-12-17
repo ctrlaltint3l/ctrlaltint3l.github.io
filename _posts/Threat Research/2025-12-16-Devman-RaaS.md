@@ -346,17 +346,9 @@ From the above we can see source of the "DEVMAN 2.0 - Leaked Data" site. Interes
 
 # Conclusion
 
-Devman would very much like you to believe he's running a polished, professional and successful RaaS operation - as he portrays himself in public interviews - complete with branding, a leak blog, and a growing victim list. And to be fair, there are successful victims, with a clear indication of "easy target" impacted organisations, particularly in the healthcare sector of countries with little cybersecurity security investment. Although he has "victims", I'm yet to see the data shared from this supposed "leak site". 
+Devman would like to present a polished, professional RaaS operation that is complete with branding, a leak blog, and a growing victim list. There are clearly impacted organisations on the site, often aligning with “easy target” profiles (notably healthcare in regions with lower cybersecurity maturity). However, despite the site, victim data is still not meaningfully uploaded or accessible; at present it functions more as a claims board than leak platform.
 
-More importantly, this entire saga has been defined less by ruthless operational capability and more by repeated self-inflicted wounds. From the very beginning of the “devman” brand, his lackluster sysadmin skills and careless OPSEC have consistently turned his infrastructure into a public exhibit: exposed services, misconfigurations, and communications platforms that seem to exist primarily so they can be breached again. 
-
-In the RaaS ecosystem, and cybercrime more broadly, reputation and trust are everything. Repeated, basic OPSEC failures around infrastructure (origin IP exposure, insecure deployments, and compromised comms) aren't just sloppy slip-ups, they erode affiliate trust. RaaS lives and dies on trust: affiliates need to believe the operator can keep infrastructure stable, keep communications private, and keep payment and negotiation channels reliable. If you can’t protect your own backend, you can’t credibly promise safety to people building their livelihoods on top of it. Over time, that instability becomes a deterrent, pushing competent affiliates elsewhere and leaving you with the desperate, the reckless, or the short-term opportunists.
-
-And ironically, Devman’s insistence that affiliates *must* use Rocket.Chat - despite it already being compromised at the time of writing - was one of the factors that enabled this analysis. By centralising coordination onto a singular platform that he repeatedly failed to secure, he created a single, recoverable trail of evidence for our analysts to dig through. 
-
-And that’s before we even get to the insider affiliates orbiting the operation, whose presence only adds more volatility to an already leaky ship. Put simply: Devman may be trying to sell the image of a stable ransomware op, but the reality it looks more like a chaotic side-hustle being micromanaged in real time.
-
-[![1](/assets/images/devman/22.png)](/assets/images/devman/22.png){: .full}
+More importantly, since the start of the “devman” brand, recurring sysadmin shortcomings and careless OPSEC have repeatedly exposed infrastructure and coordination channels. In a trust-driven RaaS ecosystem, that’s not a cosmetic issue: unstable and compromised backend systems degrade affiliate confidence and reduce the operator’s ability to control narratives, negotiations, and outcomes. Devman’s insistence on centralising activity onto insecure Rocket.Chat communications platform, coupled with repeated security failures (and a untrustworthy circle of affiliates), has provided a consistent and recoverable evidence trail that provides insight into how Devman operates.
 
 ## IOCs
 
