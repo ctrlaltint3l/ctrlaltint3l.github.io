@@ -168,7 +168,7 @@ Three days later Devman publicly announces the "New panel", which appears to be 
 
 ## Déjà vu (29th Sep 25 -> Oct 19th)
 
-This is not the first time Devman's private RaaS communications have been compromised. With massive thanks to [@GangExposed_RU](https://x.com/GangExposed_RU), we were given additional private communications from a previous chat.  These chat gave further insight into how devman operates and orders his affiliates around. Additionally, we saw massive overlap in usernames across both sets of breached communications.
+This is not the first time Devman's private RaaS communications have been compromised. With massive thanks to [@GangExposed_RU](https://x.com/GangExposed_RU) for making us aware of the work done by `Neptunian` and `Tail` on the blog [te.mpe.st](https://te.mpe.st/blog/20251030-devman.html).  These chat gave further insight into how devman operates and orders his affiliates around. Additionally, we saw massive overlap in usernames across both sets of breached communications.
 
 ### Devman's associate usernames 
 
@@ -368,5 +368,5 @@ And that’s before we even get to the insider affiliates orbiting the operation
 
 ## Thanks
 
-We’d like to thank researchers @RakeshKrish12 and @GangExposed_RU for their earlier work highlighting these OPSEC failures and for sharing communications. Without their contributions, our findings might look like a stroke of luck, when in reality they reflect systemic operational security weaknesses driven by poor IT and system administration practices.
+We’d like to thank researchers `Neptunian` & `Tail` from the blog [te.mpe.st](https://te.mpe.st/blog/) and @RakeshKrish12, @GangExposed_RU for their earlier work highlighting these OPSEC failures. Without their contributions, our findings might look like a stroke of luck, when in reality they reflect systemic operational security weaknesses driven by poor IT and system administration practices.
 
