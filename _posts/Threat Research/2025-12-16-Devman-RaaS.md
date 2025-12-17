@@ -24,7 +24,7 @@ In the cybersecurity community, some threat actors are known for embarrassingly 
 
 Devman (also seen operating publicly as [@Inifintyink](https://x.com/Inifintyink) on X) is a Russian-speaking ransomware actor who is attempting to graduate from affiliate work into running his own Ransomware-as-a-Service brand. According to Analyst1’s reporting, he first appeared around mid-April 2025 as an affiliate working primarily with Qilin and DragonForce, before pivoting in July toward running a “Devman” variant built from modified DragonForce code and then formalising that into a public-facing RaaS platform by late September 2025.
 
-On September 22nd 2025, Devman advertised to "become our affiliate this week". Unfortunately, for him and his affiliates, in our blog we have analysed communications extracted from his private Rocket.Chat servers spanning from the 23rd September to 19th October, and separately, the 19th November to 3rd of December. We want to thank [@GangExposed_RU](https://x.com/GangExposed_RU) for sharing the communications from September to October. We were both unaware and shocked that Devman had another Rocket.Chat breach, just a month following his first. 
+On September 22nd 2025, Devman advertised to "become our affiliate this week". Unfortunately, for him and his affiliates, in our blog we have analysed communications extracted from his private Rocket.Chat servers spanning from the 23rd September to 19th October, and separately, the 19th November to 3rd of December. We want to thank the authors of [te.mpe.st](https://te.mpe.st/blog/20251030-devman.html) for publicly sharing the communications from September to October. We were both unaware and shocked that Devman had another Rocket.Chat breach, just a month following his first. 
 
 ## Not a great start
 
@@ -168,7 +168,7 @@ Three days later Devman publicly announces the "New panel", which appears to be 
 
 ## Déjà vu (29th Sep 25 -> Oct 19th)
 
-This is not the first time Devman's private RaaS communications have been compromised. With massive thanks to [@GangExposed_RU](https://x.com/GangExposed_RU) for making us aware of the work done by `Neptunian` and `Tail` on the blog [te.mpe.st](https://te.mpe.st/blog/20251030-devman.html).  These chat gave further insight into how devman operates and orders his affiliates around. Additionally, we saw massive overlap in usernames across both sets of breached communications.
+This is not the first time Devman's private RaaS communications have been compromised. With massive thanks to `Neptunian` and `Tail` for making their recent [Rocket.Chat devman leak](https://te.mpe.st/pastes/20251030-DVM-c1.txt). We also recommend reading their [blog post](https://te.mpe.st/blog/20251030-devman.html).  These chats gave further insight into how devman operates and orders his affiliates around. Additionally, we saw massive overlap in usernames across both sets of breached communications.
 
 ### Devman's associate usernames 
 
@@ -366,7 +366,11 @@ And that’s before we even get to the insider affiliates orbiting the operation
 | 86.106.85[.]183 | 9009 |  Sliver C2 (31337) |
 | 86.106.85[.]183 | 9009 |  Leak Site |
 
+[Devman Rocket.Chat Export](https://raw.githubusercontent.com/ctrlaltint3l/intelligence/refs/heads/main/devman/devman-announcements-rocket.chat)
+
 ## Thanks
 
-We’d like to thank researchers `Neptunian` & `Tail` from the blog [te.mpe.st](https://te.mpe.st/blog/) and @RakeshKrish12, @GangExposed_RU for their earlier work highlighting these OPSEC failures. Without their contributions, our findings might look like a stroke of luck, when in reality they reflect systemic operational security weaknesses driven by poor IT and system administration practices.
+We’d like to thank researchers `Neptunian` & `Tail` for [their incredible research](https://te.mpe.st/blog/20251030-devman.html). Additionally, we'd like to recongoise @RakeshKrish12 and @GangExposed_RU for their earlier work highlighting OPSEC failures and for sharing communications. Without their contributions, our findings might look like a stroke of luck, when in reality they reflect systemic operational security weaknesses driven by poor IT and system administration practices.
+
+
 
