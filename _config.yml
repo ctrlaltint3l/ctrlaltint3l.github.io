@@ -104,12 +104,6 @@ author:
 # Site Footer
 footer:
   links:
-    - label: "@polygonben"
-      icon: "fas fa-fw fa-link"
-      url: "https://x.com/polygonben"
-    - label: "@@0xffaraday"
-      icon: "fas fa-fw fa-link"
-      url: "https://x.com/0xffaraday"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/ctrlaltint3l"
