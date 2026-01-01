@@ -2,7 +2,7 @@
 title: "Where is the EDR? Sliver C2 running from firewalls"
 classes: wide
 header:
-  teaser: /assets/images/fortsliver/logo.jpg
+  teaser: /assets/images/fortisliver/raw.png
 ribbon: black
 description: "Threat actor deploys Sliver C2 to FortiWeb appliances"
 categories:
@@ -17,7 +17,7 @@ toc: true
 
 During routine open-directory threat-hunting on Censys, we identified a threat actor who had exposed Sliver C2 databases and logs, amongst other things. Analysis of these databases, logs and the corresponding infrastructure indicated the threat actor had successfully exploited multiple FortiWeb devices to deploy Sliver. This group also leveraged React2Shell (CVE-2025-55182) in order to deploy Sliver and leveraged the tool [fast reverse proxy (FRP)](https://github.com/fatedier/frp) to expose local services on victim hosts remotely.
 
-[![1](/assets/images/fortsliver/4.png)](/assets/images/fortsliver/4.png){: .align-center}
+[![1](/assets/images/fortisliver/4.png)](/assets/images/fortisliver/4.png){: .align-center}
 
 > You can quickly hunt active ODs using Censys/Shodan, and find exposed infrastructure like this, although they are volatile and can quickly go down. If I'm not mistaken, [Hunt.io](https://hunt.io/) is the only platform that continously archives malicious open-directories. Noteably, some of the open-directories mentioned in this research are archived on the platform. Although we won't be sharing victim information or all files we collected from their open-directories, this data is accessible on the [Hunt.io](https://hunt.io/) platform.         
 
@@ -45,7 +45,7 @@ websites add-content --website ubuntupackages --web-path / --content /root/dom/u
 https --domain ns1.ubunutpackages.store --cert /root/dom/cert.pem --key /root/dom/key.pem --website ubuntupackages
 ```
 
-[![1](/assets/images/fortsliver/1.png)](/assets/images/fortsliver/1.png){: .align-center}
+[![1](/assets/images/fortisliver/1.png)](/assets/images/fortisliver/1.png){: .align-center}
 
 We can see the Sliver C2 domain `ns1.bafairforce[.]army` also has a "decoy" page impersonating the "Join Bangladesh Airforce".
 
@@ -56,7 +56,7 @@ websites add-content --website ARMED_FORCES_DIVISION --web-path / --content /roo
 https --domain ns1.bafairforce.army --cert /root/website-bd/cert.pem --key /root/website-bd/key.pem --website ARMED_FORCES_DIVISION
 ```
 
-[![1](/assets/images/fortsliver/2.png)](/assets/images/fortsliver/2.png){: .align-center}
+[![1](/assets/images/fortisliver/2.png)](/assets/images/fortisliver/2.png){: .align-center}
 
 > The choice of impersonating the Bangladesh Airforce is not a coincidence. This is a strategic choice, multiple of the victims beaconing to the domain `bafairforce[.]army` can be organisations in Bangladesh.   
 
@@ -141,7 +141,7 @@ After deploying Sliver C2 to victim hosts, they leveraged the framework to deplo
 
 We observed the tool and configuration being hosted on `hXXp://45.83.181[.]160:8003/frpc.toml` which was downloaded onto victim hosts. The FRP Server (frps) shows multiple active victims. 
 
-[![1](/assets/images/fortsliver/3.png)](/assets/images/fortsliver/3.png){: .align-center}
+[![1](/assets/images/fortisliver/3.png)](/assets/images/fortisliver/3.png){: .align-center}
 
 We can corroborate victim IP addresses within Sliver databases with the FRP server.
 
@@ -149,7 +149,7 @@ We can corroborate victim IP addresses within Sliver databases with the FRP serv
 
 Aside from using FRP, the threat actor leveraged the open-source tool [microsocks](https://github.com/rofl0r/microsocks), that was delivered the file `cups-lpd`. Analysing the binary we can see this will expose the SOCKS service on port 515, which is noteable as this is the expected port that the legitimate Linux CUPS Line Printer Daemon will listen on:
 
-[![1](/assets/images/fortsliver/6.png)](/assets/images/fortsliver/6.png){: .align-center}
+[![1](/assets/images/fortisliver/6.png)](/assets/images/fortisliver/6.png){: .align-center}
 
 This microsocks service was once persisted via a Systemd service:
 
@@ -166,20 +166,20 @@ ExecStart=/bin/.root/cups-lpd
 
 From the beacon databases, we can find the exposed SOCKS services running on port `515` on FortiWeb hosts on Censys:
 
-[![1](/assets/images/fortsliver/7.png)](/assets/images/fortsliver/7.png){: .align-center}
+[![1](/assets/images/fortisliver/7.png)](/assets/images/fortisliver/7.png){: .align-center}
 
 
 Noteably, although not used in the above case, this also had hardcoded credentials that could've been used `Monkhood6703:64d9cb9c5f075dfaa371a6f`, if the `cups-lpd` service was run with a `-1/-w` switch. 
 
-[![1](/assets/images/fortsliver/5.png)](/assets/images/fortsliver/5.png){: .align-center}
+[![1](/assets/images/fortisliver/5.png)](/assets/images/fortisliver/5.png){: .align-center}
 
 #### Victimology 
 
 Across the C2 databases recovered, and exclusing FP or sandbox hostnames, there were 30 unique IP addresses that were beaconing. Multiple  victims were observed in Pakistan and Bangladesh, including organisations in the financial and government sector.  
 
-[![1](/assets/images/fortsliver/8.png)](/assets/images/fortsliver/8.png){: .align-center}
+[![1](/assets/images/fortisliver/8.png)](/assets/images/fortisliver/8.png){: .align-center}
 
-[![1](/assets/images/fortsliver/10.png)](/assets/images/fortsliver/10.png){: .align-center}
+[![1](/assets/images/fortisliver/10.png)](/assets/images/fortisliver/10.png){: .align-center}
 
 
 ## Conclusion
