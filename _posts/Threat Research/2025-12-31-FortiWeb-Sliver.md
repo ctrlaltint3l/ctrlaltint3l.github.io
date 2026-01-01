@@ -206,12 +206,15 @@ Although the first C2 domain was registered 3 months earlier, recovered data ind
 | Type     | Indicator                            | Notes                                                                                                                                                                                 |
 | -------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | URL / C2 | `https://ns1.ubunutpackages[.]store` | Targeting FortiWeb instances; observed from `195.20.17[.]253`; domain registered **2025-12-26**                                                                                       |
-| URL / C2 | `https://ns1.bafairforce[.]army`     | Targeting FortiWeb + React2Shell; observed from `193.233.201[.]12`; domain registration date appears as **2025-09-24**                                                                |
-| IP       | `195.20.17[.]253`                    | Sliver C2; open directory observed                                                                                                                                                    |
-| IP       | `45.143.167[.]7`                     | Sliver C2; open directory observed                                                                                                                                                    |
-| IP       | `45.150.108.43`                      | Sliver C2                                                                                                                                                                             | 
-| IP       | `45.83.181[.]160`                    | Fast Reverse Proxy (FRP) server; open directory observed                                                                                                                              |
-| IP       | `193.233.201[.]12`                   | Associated with `ns1.bafairforce[.]army`; Sliver C2; open directory observed                                                                                                          |
+| URL / C2 | `https://ns1.bafairforce[.]army`     | Targeting FortiWeb + React2Shell; observed from `193.233.201[.]12`; domain registered **2025-09-24**                                                                |
+| IP       | `193.233.201[.]12` (AS 62005)        | Sliver C2; open directory observed                                                                                                          |
+| IP       | `195.20.17[.]253` (AS 62005)         | Sliver C2; open directory observed                                                                                                                                                    |
+| IP       | `45.150.108[.]43` (AS 62005)         | Sliver C2                                                                                                                                                                             |
+| IP       | `45.143.167[.]7` (AS 62005)          | Sliver C2; open directory observed                                                                                                                                                    |
+| IP       | `80.78.18[.]142` (AS 39287)          | Sliver C2                                                                                                                                                                             | 
+| IP       | `192.81.210[.]81` (AS 14061)         | Sliver C2                                                 |
+| IP       | `45.83.181[.]160` (AS 44559)         | Fast Reverse Proxy (FRP) server; open directory observed | 
+
 
 | C2 domain                    | Registration (reported) | C2 IP              | Status/Notes      |   ASN |
 | ---------------------------- | ----------------------: | ------------------ | ----------------- | ----: |
