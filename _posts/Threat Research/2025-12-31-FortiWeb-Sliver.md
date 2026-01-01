@@ -2,7 +2,7 @@
 title: "Where is the EDR? Sliver C2 running from firewalls"
 classes: wide
 header:
-  teaser: /assets/images/fortisliver/raw.png
+  teaser: /assets/images/fortisliver/logo.jpg
 ribbon: black
 description: "Threat actor deploys Sliver C2 to FortiWeb appliances"
 categories:
