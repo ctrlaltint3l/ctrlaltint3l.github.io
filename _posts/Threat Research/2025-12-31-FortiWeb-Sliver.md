@@ -21,13 +21,13 @@ During routine open-directory threat-hunting on Censys, we identified a threat a
 
 > You can quickly hunt active ODs using Censys/Shodan, and find exposed infrastructure like this, although they are volatile and can quickly go down. If I'm not mistaken, [Hunt.io](https://hunt.io/) is the only platform that continously archives malicious open-directories. Noteably, some of the open-directories mentioned in this research are archived on the platform. Although we won't be sharing victim information or all files we collected from their open-directories, this data is accessible on the [Hunt.io](https://hunt.io/) platform.         
 
-## Initial Access 
+# Initial Access 
 
 Evidence suggests that this threat group gained initial access via exploitation of public facing vulnerabilities, deploying Sliver C2 to victim hosts. The threat actor has leveraged React2Shell (CVE-2025-55182) and has also exploited numerous FortiWeb appliances. The exact vulnerability used to exploit the FortiWeb appliances is unknown, as we did not recover a POC for this, although they all are outdated. 
 
-## Command & Control
+# Command & Control
 
-### Sliver C2 
+## Sliver C2 
 
 | C2 domain                  | Registration | C2 IP            | ASN   |
 |----------------------------|--------------|------------------|-------|
@@ -60,7 +60,7 @@ https --domain ns1.bafairforce.army --cert /root/website-bd/cert.pem --key /root
 
 > The choice of impersonating the Bangladesh Airforce is not a coincidence. This is a strategic choice, multiple of the victims beaconing to the domain `bafairforce[.]army` can be organisations in Bangladesh.   
 
-#### Sliver Implants
+## Sliver Implants
 
 | Creation Date  | Implant Name       | C2 Domain                  | Hash                                                             |
 |----------------|--------------------|----------------------------|------------------------------------------------------------------|
@@ -70,7 +70,7 @@ https --domain ns1.bafairforce.army --cert /root/website-bd/cert.pem --key /root
 | 22/12/25 07:04 | ELEGANT_GO-KART    | ns1.bafairforce[.]army     | 3c24f30f2ca89d408d42293cab8fbb81cb9c2b0801074ef40f0a79770dac5956 |
 | 26/12/25 10:45 | ARTIFICIAL_SUPPORT | ns1.ubunutpackages[.]store | 2897ee24de4cca2a4c6a085cf6fdccb6a89c6c23978529d81b4f4e6db46b0b96 |
 
-#### Sliver on FortiWeb
+## Sliver on FortiWeb
 
 We can see evidence of exploited FortiWeb devices from `5.4.202` - `6.1.62`. The Sliver binary was deployed to the path `/bin/.root/system-updater`. 
 
@@ -90,7 +90,7 @@ Noteably, we also observed 1 Chinese "victim" host that was not related to Forti
 |29/12/25 07:16:37| ARTIFICIAL_SUPPORT | linux | amd64 | IN | /bin/.root/system-updater | Linux FortiWeb 5.4.202                                 |
 |29/12/25 12:45:05| ARTIFICIAL_SUPPORT | linux | amd64 | CN | /app/web/system-updater   | Linux a19f1ef3ded0 6.13.7-orbstack-00283-g9d1400e7e9c6 |
 
-#### Sliver Persistence
+## Sliver Persistence
 
 The threat actor persisted on Linux hosts via the Systemd Service ([T1543.002](https://attack.mitre.org/techniques/T1543/002/)) and by modification of system processes ([T1543](https://attack.mitre.org/techniques/T1543)).
 
@@ -133,9 +133,9 @@ autorestart=true
 
 Additionally, we can see the threat actor has modified the `supervisor.conf` file in order to persist Sliver C2 execution. 
 
-## Proxy Infrastructure
+# Proxy Infrastructure
 
-### FRP
+## FRP
 
 After deploying Sliver C2 to victim hosts, they leveraged the framework to deploy further proxying tooling. Noteably, the [Fast Reverse Proxy (frp)](https://github.com/fatedier/frp) was leveraged.
 
@@ -145,7 +145,7 @@ We observed the tool and configuration being hosted on `hXXp://45.83.181[.]160:8
 
 We can corroborate victim IP addresses within Sliver databases with the FRP server.
 
-### microsocks
+## microsocks
 
 Aside from using FRP, the threat actor leveraged the open-source tool [microsocks](https://github.com/rofl0r/microsocks), that was delivered the file `cups-lpd`. Analysing the binary we can see this will expose the SOCKS service on port 515, which is noteable as this is the expected port that the legitimate Linux CUPS Line Printer Daemon will listen on:
 
@@ -182,7 +182,7 @@ Across the C2 databases recovered, and exclusing FP or sandbox hostnames, there 
 [![1](/assets/images/fortisliver/10.png)](/assets/images/fortisliver/10.png){: .align-center}
 
 
-## Conclusion
+# Conclusion
 
 These attacks highlight a massive blindspot in visibility and telemetry for organisations using edge appliances like FortiWeb. In this case, we only had evidence of potential exploitation due to the operator leaving Sliver logs and databases exposed. These devices typically don't have inbuilt AV/EDR, and I've not heard of people installing their own. This makes sufficently and effectively threat hunting for this activity, on appliances, incredibly difficult.  
 
