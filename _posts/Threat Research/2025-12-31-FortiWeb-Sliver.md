@@ -133,9 +133,9 @@ autorestart=true
 
 Additionally, we can see the threat actor has modified the `supervisor.conf` file in order to persist Sliver C2 execution. 
 
-### Proxy Infrastructure
+## Proxy Infrastructure
 
-#### FRP
+### FRP
 
 After deploying Sliver C2 to victim hosts, they leveraged the framework to deploy further proxying tooling. Noteably, the [Fast Reverse Proxy (frp)](https://github.com/fatedier/frp) was leveraged.
 
@@ -145,7 +145,7 @@ We observed the tool and configuration being hosted on `hXXp://45.83.181[.]160:8
 
 We can corroborate victim IP addresses within Sliver databases with the FRP server.
 
-#### microsocks
+### microsocks
 
 Aside from using FRP, the threat actor leveraged the open-source tool [microsocks](https://github.com/rofl0r/microsocks), that was delivered the file `cups-lpd`. Analysing the binary we can see this will expose the SOCKS service on port 515, which is noteable as this is the expected port that the legitimate Linux CUPS Line Printer Daemon will listen on:
 
@@ -173,7 +173,7 @@ Noteably, although not used in the above case, this also had hardcoded credentia
 
 [![1](/assets/images/fortisliver/5.png)](/assets/images/fortisliver/5.png){: .align-center}
 
-#### Victimology 
+# Victimology 
 
 Across the C2 databases recovered, and exclusing FP or sandbox hostnames, there were 30 unique IP addresses that were beaconing. Multiple  victims were observed in Pakistan and Bangladesh, including organisations in the financial and government sector.  
 
