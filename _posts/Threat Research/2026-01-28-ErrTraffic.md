@@ -367,4 +367,4 @@ ErrTraffic’s recurring flaws feel less like oversights and more the result of 
 
 Although in the "v2" version there was no restrictions or hardening, making it trivial to gain authenticated RCE, we observed in newer versions the actor had attempted to, implying the developer was aware of issues. However, due to the obvious logic gaps, attempts to fix certain vulnerabilities were futile. 
 
-For defenders, this is useful context. Tooling like ErrTraffic may lower the barrier to entry for attackers, but it also introduces systemic weaknesses that can be repeatedly exploited, detected, and disrupted. As AI-assisted crimeware becomes more common, these predictable failures are likely to become an increasingly common. 
+For defenders, this is useful context. Tooling like ErrTraffic may lower the barrier to entry for attackers, but it also introduces systemic weaknesses. As AI-assisted crimeware becomes more common, these predictable failures are likely to become an increasingly common. 
