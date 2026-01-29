@@ -272,7 +272,7 @@ if (move_uploaded_file($_FILES['file']['tmp_name'], $targetPath)) {
 </video>
 </center>
 
-## Rogue database
+# Rogue database
 
 When `install.php` is left exposed, an attacker can reinitialize the panel with a database they control. This effectively resets authentication and hands full administrative access, and this file is not deleted by default on earlier versions.
 
