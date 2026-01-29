@@ -67,7 +67,7 @@ After letting this run we got 1 hit!
 
 [![1](/assets/images/err/2.png)](/assets/images/err/2.png){: .full}  
 
-## Source Code Analysis (v2)
+# Source Code Analysis (v2)
 
 After extracting the panel archive, we find two files in the root of the panel directory: `install.php` and `index.php`. The below source-code tree reflects that shown on the Censys article.  
 
@@ -115,7 +115,7 @@ After extracting the panel archive, we find two files in the root of the panel d
 │      └── windows
 ```
 
-### install.php (v2)
+## install.php (v2)
 
 [![1](/assets/images/err/3.png)](/assets/images/err/3.png){: .full}  
 
@@ -182,7 +182,7 @@ This is not an unusual way to setup or configure a webapp to install, but as the
 [![1](/assets/images/err/6.png)](/assets/images/err/6.png){: .full}  
 
 
-### upload_file.php (v2)
+## upload_file.php (v2)
 
 As part of a ClickFix TDS, you'd expect some capability to upload or stage malware/payloads that can be hosted on sites with the ErrTraffic lure. Thankfully, in the v2 source, there are no restrictions on files that can be uploaded. 
 
