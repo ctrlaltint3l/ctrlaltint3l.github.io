@@ -31,7 +31,7 @@ Our analysis of ErrTraffic uncovered several recurring design flaws that lead to
 In the sections below, we walk through how each issue was identified, exploited, and chained together in real-world scenarios.
 
 
-# Seizing the source
+# Source Acquisition
 
 In order to start testing versions of ErrTraffic, we'd need to get our hands on the source code to deploy locally. We saw Censys' had the source, and it was being advertised on cybercrime forums, so it must be out there! There are few ways we could approach getting our hands on this. 
 
