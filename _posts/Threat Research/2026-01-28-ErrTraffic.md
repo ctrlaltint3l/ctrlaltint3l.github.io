@@ -38,13 +38,13 @@ As unfortunately we cannot attack genuine threat actor infrastructure, in order 
 We saw Censys' had the source, and it was being advertised on cybercrime forums, so it must be out there! There are few ways we could approach getting our hands on this. 
 
 * OSINT
-* Fuzzing
+* Scanning
 
 Fuzzing ended up being successful as threat actors are simple and predictable creatures. 
 
-## Fuzzing
+## Scanning
 
-To fuzz ErrTraffic webservers for exposed panels, we first have to find the ErrTraffic web-servers.
+To scan ErrTraffic webservers for exposed panels, we first have to find the ErrTraffic web-servers.
 
 Censys provided a query to identify ErrTraffic servers:
 
@@ -56,7 +56,7 @@ Additionally, when you visit an ErrTraffic site, a HTTP request is made to `/adm
 
 [![1](/assets/images/err/1.png)](/assets/images/err/1.png){: .full}  
 
-“Once we have a list of targets, we can use `ffuf` with a custom wordlist that includes common filenames like `panel.zip`, `панель.zip`, `errtraffic.7z`, and many other variations.
+Once we have a list of URLs, we can use `ffuf` with a word list that checks common filenames like `panel.zip`, `панель.zip`, `errtraffic.7z`, and many other variations.
 
 Using a quick one-liner we can loop through each "target" and run a `ffuf` command:
 
@@ -324,7 +324,7 @@ if (!is_file($filePath)) {
 }
 ``` 
 
-In the below video we demonstrate uploading "malware" to a ErrTraffic website that we have hijacked with our rogue DB. We will use our direct access to MySQL to edit the internal file path, embedding a path traversal payload to read `/etc/passwd`:
+In the below video we demonstrate uploading "malware" to the ErrTraffic website that we have hijacked with our rogue DB. We will use our direct access to MySQL to edit the internal file path, embedding a path traversal payload to read `/etc/passwd`:
 
 <center>
 <video width="1080" height="720" controls="controls">
@@ -361,6 +361,8 @@ This is a command-and-control (C2) panel that reportedly uses blockchain smart c
 At the bottom of the page is contact details for `LenAI`, the same cybercriminal selling ErrTraffic. 
 
 [![1](/assets/images/err/9.png)](/assets/images/err/9.png){: .full}  
+
+
 
 # Conclusion
 
