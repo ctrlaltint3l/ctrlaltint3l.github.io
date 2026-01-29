@@ -1,5 +1,5 @@
 ---
-title: "ErrTraffic Under the Hood: Poking at crimeware panels for fun"
+title: "ErrTraffic Under the Hood: A look at the source code"
 classes: wide
 header:
   teaser: /assets/images/ErrTraffic/logo.png
