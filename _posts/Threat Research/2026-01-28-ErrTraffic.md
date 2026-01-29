@@ -275,7 +275,7 @@ if (move_uploaded_file($_FILES['file']['tmp_name'], $targetPath)) {
 
 ## Rogue database
 
-When `install.php` is left exposed, an attacker can reinitialize the panel with a database they control. This effectively resets authentication and hands full administrative access to actor - if not deleted. 
+When `install.php` is left exposed, an attacker can reinitialize the panel with a database they control. This effectively resets authentication and hands full administrative access, and this file is not deleted by default on earlier versions.
 
 We set up a ErrTraffic server that has the domain `sadrussianserver.xyz` and a rogue MySQL database on the domain `mysecretdatabase.com`. These were controlled and owned by us. 
 
@@ -283,7 +283,7 @@ We set up a ErrTraffic server that has the domain `sadrussianserver.xyz` and a r
 
 ## Broken Access Control
 
-After quite a bit of testing, we managed to set up a remote MySQL server and test our hijacking theory: 
+After quite a bit of testing, we managed to set up a remote MySQL server and test our hijacking theory on our deploy ErrTraffic panel: 
 
 1. Create a MySQL server and set credentials up for a database
 2. Fill in your hostname, database name, database credentials & panel credentials to `install.php`
