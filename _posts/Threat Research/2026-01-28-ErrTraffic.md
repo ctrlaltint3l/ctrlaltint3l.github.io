@@ -2,7 +2,7 @@
 title: "ErrTraffic Under the Hood: A look at the source code"
 classes: wide
 header:
-teaser: /assets/images/err/l.png
+teaser: /assets/images/err/logo.png
 ribbon: black
 description: "Investigating vulnerabilities in the ErrTraffic panel"
 categories:
