@@ -22,14 +22,13 @@ We always approach threat research with an attacker mindset. In this blog, we'll
 
 ## Vulnerabilities Overview
 
-Our analysis of ErrTraffic uncovered several recurring design flaws that lead to full panel compromise:
+Our analysis of ErrTraffic uncovered several recurring design flaws that could to full panel compromise, under certain conditions:
 
 - Authenticated file upload paths that allow arbitrary code execution
 - An exposed `install.php` endpoint that enables panel reinstallation and authentication bypass
 - Database-controlled file paths that can be abused for local file disclosure via path traversal
 
-In the sections below, we walk through how each issue was identified, exploited, and chained together in real-world scenarios.
-
+In the sections below, we walk through how each issue was identified and provide POC videos from our deployments!
 
 # Source Acquisition
 
