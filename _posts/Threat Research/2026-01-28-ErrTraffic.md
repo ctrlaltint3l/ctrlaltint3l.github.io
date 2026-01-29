@@ -37,7 +37,7 @@ In order to start testing versions of ErrTraffic, we'd need to get our hands on 
 * OSINT
 * Scanning
 
-Fuzzing ended up being successful as threat actors are simple and predictable creatures. 
+Scanning ended up being successful as threat actors are predictable creatures. 
 
 ## Scanning
 
