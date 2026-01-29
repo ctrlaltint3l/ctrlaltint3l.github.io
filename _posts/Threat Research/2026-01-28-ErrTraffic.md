@@ -33,9 +33,7 @@ In the sections below, we walk through how each issue was identified, exploited,
 
 # Seizing the source
 
-As unfortunately we cannot attack genuine threat actor infrastructure, in order to find vulnerabilities and exploit, we need to get our hands on the source-code and self host. 
-
-We saw Censys' had the source, and it was being advertised on cybercrime forums, so it must be out there! There are few ways we could approach getting our hands on this. 
+In order to start testing versions of ErrTraffic, we'd need to get our hands on the source code to deploy locally. We saw Censys' had the source, and it was being advertised on cybercrime forums, so it must be out there! There are few ways we could approach getting our hands on this. 
 
 * OSINT
 * Scanning
