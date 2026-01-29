@@ -22,26 +22,25 @@ We always approach threat research with an attacker mindset. In this blog, we'll
 
 ## Vulnerabilities Overview
 
-During our investigation into ErrTraffic we discovered an authenticated file upload vulnerability that could be leveraged to upload a webshell and gain Remote Code Execution (RCE). In later versions we discovered the developers had patched this vulnerability, but we found a way to bypass this :P
+Our analysis of ErrTraffic uncovered several recurring design flaws that lead to full panel compromise:
 
-Although the RCE we discovered requires authentiation, in some versions of ErrTraffic, it is possible to circumvent authentication completely. 
+- Authenticated file upload paths that allow arbitrary code execution
+- An exposed `install.php` endpoint that enables panel reinstallation and authentication bypass
+- Database-controlled file paths that can be abused for local file disclosure via path traversal
 
-By default, if a `install.php` source file isn't manually deleted, ErrTraffic will allows itself to be reinstalled with a new configuration. We can install a "rouge" MySQL server that we control. 
+In the sections below, we walk through how each issue was identified, exploited, and chained together in real-world scenarios.
 
-If we can host the database for "ErrTraffic" server ourselves, we can set our own credentials and bypass authentication, potentially leading to an authenticated RCE if an older version is being used.  
-
-Furthermore, we discovered that if we host the MySQL database ourselves, we can modify the hard-coded file paths where malware is hosted, leveraging path traversal in order to read local files. 
 
 # Seizing the source
 
-As unfortunately we cannot attack genuine threat actor infrastrcuture, in order to find vulnerabilities and exploit, we need to get our hands on the source-code and self host. 
+As unfortunately we cannot attack genuine threat actor infrastructure, in order to find vulnerabilities and exploit, we need to get our hands on the source-code and self host. 
 
-We saw Censys' had the source, and it was being advertised on cybercrime forumns, so it must be out there! There are few ways we could approach getting our hands on this. 
+We saw Censys' had the source, and it was being advertised on cybercrime forums, so it must be out there! There are few ways we could approach getting our hands on this. 
 
 * OSINT
 * Fuzzing
 
-Fuzzing ended up being successful as threat actors are simple and predicatable creatures. 
+Fuzzing ended up being successful as threat actors are simple and predictable creatures. 
 
 ## Fuzzing
 
@@ -237,7 +236,7 @@ $stmt->execute([
 
 ## Version 2
 
-In ErrTraffic v2, there are no restrictions on file uploads - making our lives a lot easier! Using the in-built file upload feature, we can easily upload php webshells:
+As shown above, ErrTraffic v2 performs no server-side validation on uploaded files, allowing direct upload of executable PHP payloads.
 
 <center>
 <video width="1080" height="720" controls="controls">
@@ -245,7 +244,7 @@ In ErrTraffic v2, there are no restrictions on file uploads - making our lives a
 </video>
 </center>
 
-Noteably, we also analysed source code of newer versions of ErrTraffic. These versions had additional restrictions that made it more fiddly to bypass. Later, we will discuss technqiues to bypass the new "restrictions", allowing RCE regardless of the version.
+Notably, we also analysed source code of newer versions of ErrTraffic. These versions had additional restrictions that made it more fiddly to bypass. Later, we will discuss techniques to bypass the new "restrictions", allowing RCE regardless of the version.
 
 ## ErrTraffic V2.1
 
@@ -276,17 +275,17 @@ if (move_uploaded_file($_FILES['file']['tmp_name'], $targetPath)) {
 </video>
 </center>
 
-# Rogue database
+## Rogue database
 
-Whilst poking about on the internet, we identified multiple threat actors exposing `/install.php`, which could have resulted in an path traversal and RCE vulnerability. In more recent versions, however, the installation process appears to be locked down and now requires a password to access the form and overwrite the configuratiom.
+When `install.php` is left exposed, an attacker can reinitialize the panel with a database they control. This effectively resets authentication and hands full administrative access to actor - if not deleted. 
 
-However, with the two versions of sourcecode we retrieved, this wasn't the case. We set up a ErrTraffic server that has the domain `sadrussianserver.xyz` and a rogue MySQL database on the domain `mysecretdatabase.com`. 
+We set up a ErrTraffic server that has the domain `sadrussianserver.xyz` and a rogue MySQL database on the domain `mysecretdatabase.com`. These were controlled and owned by us. 
 
-> When using a rogue database, original victims/victim data will not be visible. However, once database control is obtained, it can be leveraged to facilitate additional vulnerabilities such as remote code execution or path traversal. However, it would still be possible to retrieve this information with the RCE
+> When using a rogue database, original data used will not be visible after authentication. Regardless, this same access could allow RCE or path traversal. 
 
 ## Broken Access Control
 
-In order to "takeover" an ErrTraffic webserver, that has an exposed `install.php` you need to take the following steps:
+After quite a bit of testing, we managed to set up a remote MySQL server and test our hijacking theory: 
 
 1. Create a MySQL server and set credentials up for a database
 2. Fill in your hostname, database name, database credentials & panel credentials to `install.php`
@@ -351,7 +350,7 @@ file_put_contents($scriptPath, $jsSource);
 
 # Aeternum C2 BotNet Loader
 
-On the updated ErrTraffic panel, the one we named v2.1, there was an advertisments for "Aeternum C2 BotNet Loader":
+On the updated ErrTraffic panel, the one we named v2.1, there was an advertisements for "Aeternum C2 BotNet Loader":
 
 [![1](/assets/images/err/7.png)](/assets/images/err/7.png){: .full}  
 
