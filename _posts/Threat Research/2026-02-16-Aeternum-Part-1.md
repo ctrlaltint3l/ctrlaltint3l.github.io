@@ -19,8 +19,8 @@ In a recent CtrlAltIntel investigation into [ErrTraffic](https://ctrlaltintel.co
 In this post we:
 
 * Show how an exposed operator panel revealed the full contract/crypto implementation
-* Breakdown the smart contract ABI and C2 command format 
-* Explain and exploit core weakness in order to decrypt all Aeternum loader commands
+* Break down the smart contract ABI and C2 command format 
+* Explain and exploit core weaknesses in order to decrypt all Aeternum loader commands
 
 ## Getting the Panel
 
@@ -28,7 +28,7 @@ We mentioned that you don't **need** to configure the C2 server panel to be publ
 
 [![1](/assets/images/block/1.png)](/assets/images/block/1.png){: .full}  
 
-After we found this (initially on Censys <3), we checked the source-code to discover the Polygon smart-contract & C2 source-code was exposed public-facing as JavaScript:
+After we found this (initially on Censys <3), we checked the source-code to discover the Polygon smart-contract & C2 source-code was exposed publicly:
 
 [![1](/assets/images/block/2.png)](/assets/images/block/2.png){: .full}  
 
@@ -167,7 +167,7 @@ return crypto.subtle.deriveKey({
 }  
 ```
 
-The format of encrypted C2 commands are as follows. The key is dervived using a PBKDF2 algoirthm with both the **salt** AND & **password** set to the contract address: 
+The format of encrypted C2 commands are as follows. The key is derived using a PBKDF2 algorithm with both the **salt** AND & **password** set to the contract address: 
 
 ```
 AES key = PBKDF2( 100,000 iterations + salt & password = lowercase(contract_address) )
@@ -220,7 +220,7 @@ Not all data is following the same AES-GCM encryption scheme we observed. Some a
 
 Additionally, only of these **37** contracts could be decrypted using the AES-GCM algorithm. These are **37** individual Aeternum Loader C2 channels that have commands exposed. From these **37** C2 channels, we could successfully decode **209** plaintext C2 commands sent from 2025-10-26 to 2026-02-12. 
 
-Many of these commands relate to testing or grabbing IPs via the `ping` functionaility, but we also observed attempted the deployment of malware:
+Many of these commands relate to testing or grabbing IPs via the `ping` functionality, but we also saw attempts to deploy malware:
 
 * `all:url:hXXps://github[.]com/caldop/test/raw/refs/heads/main/Logs.exe`
 * `all:url:hXXps://l.station307[.]com/7JjDE5knnozgYoubgCLxsk/rat1411empty.exe` 
@@ -310,11 +310,11 @@ Since 31/01/2026, `LenAI`'s Polygon address, [0xcaf2...7abf](https://polygonscan
 
 [![1](/assets/images/block/65.png)](/assets/images/block/65.png){: .full}  
 
-The ErrTraffic/ClickFix activity is not the subject of this blog, although we wanted to highlight the same smart contract bytecode was used for both. This is because the contract had a "string hosting" function, and it is the threat actors choice if data is encrypted before being uploaded. Noteably, we also saw the same Polygon address responsible for creating both contracts for ErrTraffic and Aeternum Loader. This is expected as `LenAI` developed both of these. 
+The ErrTraffic/ClickFix activity is not the subject of this blog, although we wanted to highlight the same smart contract bytecode was used for both. This is because the contract had a "string hosting" function, and it is the threat actors choice if data is encrypted before being uploaded. Notably, we also saw the same Polygon address responsible for creating both contracts for ErrTraffic and Aeternum Loader. This is expected as `LenAI` developed both of these. 
 
 # Conclusion
 
-Aeternum's "C2 over blockchain" is a clever resilience play, and also makes nerds like me happy, although that resilience comes with a tradeoff defenders can exploit. Contracts, transactions and event logs are public, and in Aeternum's case the encryption implementation meant a contract address was enough to reconstruct historical command activity for a particular smart contract. Once a contract is known, researchers can look back historically or monitor for updates in real time. Additionally, we demonstrated how pivoting on contract bytecode can lead to the discovery of more potential C2 targets. 
+Aeternum's "C2 over blockchain" is a clever resilience play and also makes nerds like me happy. However, that resilience comes with a tradeoff defenders can exploit. Contracts, transactions and event logs are public, and in Aeternum's case the encryption implementation meant a contract address was enough to reconstruct historical command activity for a particular smart contract. Once a contract is known, researchers can look back historically or monitor for updates in real time. Additionally, we demonstrated how pivoting on contract bytecode can lead to the discovery of more potential C2 targets. 
 
 The hardest part of this research was getting the first contract address. In the [next blog](), we will walk through how we obtained a real Aeternum Loader build, unpacked and reversed it, extracted the embedded Polygon contract address, and validated the on-chain polling + execution chain end-to-end.
 
