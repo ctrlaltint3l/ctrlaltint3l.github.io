@@ -14,7 +14,7 @@ toc: true
 
 # Aeternum Loader Analysis
 
-In our first post, we showed how Aeternum's operator panel and a flawed encryption scheme let us decrypt C2 commands straight from the Polygon blockchain. This missing piece was the contract itself, which meant getting a real build and tearing it apart. 
+In our [first post](https://ctrlaltintel.com/threat%20research/Aeternum-Part-1/), we showed how Aeternum's operator panel and a flawed encryption scheme let us decrypt C2 commands straight from the Polygon blockchain. This missing piece was the contract itself, which meant getting a real build and tearing it apart. 
 
 In this post we:
 
