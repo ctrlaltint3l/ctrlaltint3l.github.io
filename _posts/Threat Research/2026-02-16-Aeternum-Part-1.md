@@ -318,7 +318,7 @@ The ErrTraffic/ClickFix activity is not the subject of this blog, although we wa
 
 Aeternum's "C2 over blockchain" is a clever resilience play and also makes nerds like me happy. However, that resilience comes with a tradeoff defenders can exploit. Contracts, transactions and event logs are public, and in Aeternum's case the encryption implementation meant a contract address was enough to reconstruct historical command activity for a particular smart contract. Once a contract is known, researchers can look back historically or monitor for updates in real time. Additionally, we demonstrated how pivoting on contract bytecode can lead to the discovery of more potential C2 targets. 
 
-The hardest part of this research was getting the first contract address. In the [next blog](), we will walk through how we obtained a real Aeternum Loader build, unpacked and reversed it, extracted the embedded Polygon contract address, and validated the on-chain polling + execution chain end-to-end.
+The hardest part of this research was getting the first contract address. In the [next blog](https://ctrlaltintel.com/threat%20research/Aeternum-Part-2/), we will walk through how we obtained a real Aeternum Loader build, unpacked and reversed it, extracted the embedded Polygon contract address, and validated the on-chain polling + execution chain end-to-end.
 
 # IOCs
 
