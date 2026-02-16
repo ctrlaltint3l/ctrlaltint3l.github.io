@@ -284,10 +284,11 @@ We can do this at scale, I'll break down a few example commands we observed for 
 | Payload extension (from URL)      | Drop behavior                   | Notes                                                                                                             | Persistence behavior                                                       |
 | --------------------------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `.dll`                        | **No drop** (reflective loading) | Manual-map/reflective-style load; resolves imports/relocs; calls `DllMain` or call a named export | N/A          |
-| `.ps1`**                        |`%TEMP%\{RANDOM10}\{RANDOM10}.ps1`           | Removes MOTW (`:Zone.Identifier` ADS deletion); PowerShell runs hidden with ExecutionPolicy bypass + NoProfile            | If enabled: Startup folder `.lnk` pointing to dropped script |
+| `.ps1`                        |`%TEMP%\{RANDOM10}\{RANDOM10}.ps1`           | Removes MOTW (`:Zone.Identifier` ADS deletion); PowerShell runs hidden with ExecutionPolicy bypass + NoProfile            | If enabled: Startup folder `.lnk` pointing to dropped script |
 | `.cmd` / `.bat`               | `%TEMP%\{RANDOM10}\{RANDOM10}.ps1`           | Removes MOTW; runs via `cmd.exe`; PPID spoofing to `explorer.exe`                                                     | If enabled: Startup folder `.lnk` pointing to dropped script               |
 | `.exe` + all other extensions | `%TEMP%\{RANDOM10}\{RANDOM10}.ps1`           | Removes MOTW; PPID spoofing to `explorer.exe`                                    | If enabled: Startup folder `.lnk` pointing to dropped file                 |
 
+[![1](/assets/images/block/66.png)](/assets/images/block/66.png){: .full}
 
 Aeternum Loader download payloads from the C2 using `InternetReadFile()` to read 8KB chunks to the buffer. These may be written to disk - given the file extension of the downloaded payload. The User-Agent `Mozilla/5.0` is used for these C2 requests:
 
