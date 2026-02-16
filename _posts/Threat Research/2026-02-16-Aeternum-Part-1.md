@@ -181,7 +181,7 @@ This means, from the contract address alone, it's possible to completely decrypt
 
 # Blockchain Analysis
 
-In the [second blog](), we reverse a build of Aeternum Loader - directly from `LenAI` themselves, eventually extracting the contract address `0x4d70C3393C5d9EC325Edf8b3f289cFA9777e64B0`. We can use Polygon scan to view the 13 transactions surrounding this smart contract:
+In the [second blog](https://ctrlaltintel.com/threat%20research/Aeternum-Part-2/), we reverse a build of Aeternum Loader - directly from `LenAI` themselves, eventually extracting the contract address `0x4d70C3393C5d9EC325Edf8b3f289cFA9777e64B0`. We can use Polygon scan to view the 13 transactions surrounding this smart contract:
 
 [![1](/assets/images/block/41.png)](/assets/images/block/41.png){: .full}  
 
