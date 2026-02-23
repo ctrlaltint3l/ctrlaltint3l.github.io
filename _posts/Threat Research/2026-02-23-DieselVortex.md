@@ -186,7 +186,7 @@ Using 1 Ruble = 0.013 USD:
 
 Between 2021 and 2024, *UNIX Group LLC* scaled from sub-million revenue to more than $150 million annually. Net profit margins in 2023 exceeded 17 percent.
 
-We have no evidence to prove these funds have originated from cargo theft, nor is *Ctrl-Alt-Intel* suggesting this. At minimum, the overlap establishes that the registrant of phishing infrastructure operates or has operated companies in the same sector targeted by **Diesel Vortex**.
+We have no evidence to prove these funds have originated from cargo theft, nor is *Ctrl-Alt-Intel* suggesting this. At minimum, the overlap establishes the identity linked to the email, that was used for registration of the phishing infrastructure, operates or has operated companies in the same sector targeted by **Diesel Vortex**.
 
 [![11](/assets/images/cargo/14.png){: .align-center .img-border}](/assets/images/cargo/14.png)
 <p class="figure-caption">Correlation Graph #1</p>
