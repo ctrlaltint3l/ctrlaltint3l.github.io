@@ -46,13 +46,15 @@ To perform **Double Brokering**, criminal gangs might attempt to impersonate kno
 
 Regardless of the method, these schemes typically require two capabilities:
 
-1. Access to freight systems 
-2. A credible carrier persona (MC/DOT + email + phone presence) 
+1) Access to freight systems 
+2) A credible carrier persona (MC/DOT + email + phone presence) 
 
 # Phishing in Yerevan
 
 Within the recovered source code, developers logged all Telegram webhook calls to a file named `apidata-full.txt`. The logs correspond to a prior campaign deployment and span from 22 November 2024 through 25 April 2025.  
+
 Four Telegram chats were captured:
+
 
 | **TG Chat ID** | **# of messages** | **# of members** | **Primary Language**    | **First Message (UTC)** | **Last Message (UTC)** |
 |----------------|-------------------|------------------|-------------------------|-------------------------|------------------------|
@@ -109,7 +111,7 @@ Additionally, on the 22nd of April a member of this chat revealed he was in *Kom
 [![1](/assets/images/cargo/22.png){: .align-center .img-border}](/assets/images/cargo/22.png)
 <p class="figure-caption">Chat Log showing an operator within Komitas, Armenia</p>
 
-# In the source
+# The Infrastructure Pivot
 
 Within the phishing panel source code, the file `njhTghagTGgYT\template\footer.php` contained a reference to the domain `yasomawork[.]space`. The domain was embedded within the login panel of the phishing-kit.
 
@@ -166,7 +168,7 @@ From `2014` to `2025`, **Yuri** was a founder or co-founder of the 5 registered 
 
 ## UNIX GROUP LLC 
 
-*UNIX GROUP LLC* was registered on 30 September 2021. On 8 December 2021, the domain `unx-defence[.]ru` was registered using the same email address identified in the phishing panel RDAP record. In June 2022, **Yuri Ivlev** assumed ownership of the company.
+*UNIX Group LLC* was registered on 30 September 2021. On 8 December 2021, the domain `unx-defence[.]ru` was registered using the same email address identified in the phishing panel RDAP record. In June 2022, **Yuri Ivlev** assumed ownership of the company.
 
 Corporate filings show *UNIX Group LLC* registered more than 30 OKVED classifications. The primary classification is:
 
@@ -198,7 +200,7 @@ This appears to be a legitimate registered business that comes along with a prod
 [![9](/assets/images/cargo/6.png){: .align-center .img-border}](/assets/images/cargo/6.png)
 <p class="figure-caption"><a href="https://unx-group.ru/">UNIX Group website</a></p>
 
-On 23 March 2022, *UNIX GROUP LLC* was issued an [official trade certificate](https://swis.trade.kg/Doc/171c9c78-4b33-47d9-af94-74dbcec88700) through a Kyrgyz government export and import documentation system. The certificate is publicly accessible and registers the company in connection with cross-border trade activity. Notably, the certificate lists the name **Olga Olegovna Ivleva**, who previously appeared in ownership records associated with the company.
+On 23 March 2022, *UNIX Group LLC* was issued an [official trade certificate](https://swis.trade.kg/Doc/171c9c78-4b33-47d9-af94-74dbcec88700) through a Kyrgyz government export and import documentation system. The certificate is publicly accessible and registers the company in connection with cross-border trade activity. Notably, the certificate lists the name **Olga Olegovna Ivleva**, who previously appeared in ownership records associated with the company.
 
 [![10](/assets/images/cargo/7.png){: .align-center .img-border}](/assets/images/cargo/7.png)
 <p class="figure-caption"><a href="https://swis.trade.kg/Doc/171c9c78-4b33-47d9-af94-74dbcec88700">Kyrgyz trade certificate</a></p>
@@ -225,7 +227,7 @@ We have no evidence to prove these funds have originated from cargo theft, nor i
 
 ## Terminal X and Shared Ownership
 
-TERMINAL X LLC was registered on 13 July 2023.
+*Terminal X* was registered on 13 July 2023.
 
 Ownership at formation:
 
@@ -244,9 +246,9 @@ The company lists the following OKVED classifications:
 
 The classifications again align with freight handling and cargo operations.
 
-Financial filings for Terminal X show limited revenue and small annual losses between 2023 and 2025. However, the structural importance of Terminal X lies not in revenue, but in shared ownership.
+Financial filings for *Terminal X* show limited revenue and small annual losses between 2023 and 2025. However, the structural importance of *Terminal X* lies not in revenue, but in shared ownership at incorporation.
 
-On 20 February 2026, just days prior to publication of this report, **Nikita Kazarinov** assumed full ownership of Terminal X. **Yuri Ivlev** no longer retained shares.
+On 20 February 2026, just days prior to publication of this report, **Nikita Kazarinov** assumed full ownership of *Terminal X*. **Yuri Ivlev** no longer retained shares.
 
 *Terminal X* serves as the bridge between **Yuri Ivlev** and **Nikita Kazarinov** within the corporate network.
 
@@ -346,6 +348,6 @@ The investigation into **Diesel Vortex** began with a phishing platform targetin
 
 The [technical analysis](https://haveibeensquatted.com/blog/diesel-vortex-inside-the-russian-cybercrime-group-targeting-us-eu-freight) published by *Have I Been Squatted* details the inner workings of the **Global Profit** and **MC Profit Always** platform, including Telegram architecture, phishing templates, and victim telemetry, and lots of IOCs. That research establishes the operational capability of **Diesel Vortex**.
 
-A domain embedded within the phishing panel created a pivot point for *Ctrl-Alt-Intel*'s investigation. The registration record exposed an email identifier. That same identifier appears in the corporate filings of multiple Russian LLCs operating in wholesale trade, warehousing, and transportation. Several of these entities report substantial revenue and share both sector classifications, executive-leadership history and registration addresses.
+A domain embedded within the phishing panel created an infrastructure pivot. The registration record exposed an email identifier. That same identifier appears in the corporate filings of multiple Russian LLCs operating in wholesale trade, warehousing, and transportation. Several of these entities report substantial revenue and share both sector classifications, executive-leadership history and registration addresses.
 
 It is possible that the domain registration reflects negligence, unrelated administrative overlap, or another explanation not visible through open-source analysis. At present, the evidence supports correlation, not attribution.
