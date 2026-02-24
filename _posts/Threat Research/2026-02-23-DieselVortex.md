@@ -52,9 +52,7 @@ Regardless of the method, these schemes typically require two capabilities:
 # Phishing in Yerevan
 
 Within the recovered source code, developers logged all Telegram webhook calls to a file named `apidata-full.txt`. The logs correspond to a prior campaign deployment and span from 22 November 2024 through 25 April 2025.  
-
 Four Telegram chats were captured:
-
 
 | **TG Chat ID** | **# of messages** | **# of members** | **Primary Language**    | **First Message (UTC)** | **Last Message (UTC)** |
 |----------------|-------------------|------------------|-------------------------|-------------------------|------------------------|
@@ -111,7 +109,7 @@ Additionally, on the 22nd of April a member of this chat revealed he was in *Kom
 [![1](/assets/images/cargo/22.png){: .align-center .img-border}](/assets/images/cargo/22.png)
 <p class="figure-caption">Chat Log showing an operator within Komitas, Armenia</p>
 
-# The Infrastructure Pivot
+# In the source
 
 Within the phishing panel source code, the file `njhTghagTGgYT\template\footer.php` contained a reference to the domain `yasomawork[.]space`. The domain was embedded within the login panel of the phishing-kit.
 
@@ -293,7 +291,7 @@ See below for the full list of registered entities with corresponding email addr
 
 Five of the six identified LLCs are registered at the same address:
 
-117105, Moscow, Novodanilovskaya Embankment, Building 4A
+**117105, Moscow, Novodanilovskaya Embankment, Building 4A**
 
 [![15](/assets/images/cargo/18.png){: .align-center .img-border}](/assets/images/cargo/18.png)
 <p class="figure-caption">Correlation Graph #2</p>
