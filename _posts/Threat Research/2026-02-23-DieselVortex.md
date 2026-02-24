@@ -118,7 +118,7 @@ Within the phishing panel source code, the file `njhTghagTGgYT\template\footer.p
 [![1](/assets/images/cargo/1.png){: .align-center .img-border}](/assets/images/cargo/1.png)
 <p class="figure-caption"> Source Code Excerpt</p>
 
-Historical DNS records show `yasomawork[.]space` resolving to `45.130.41[.]81` on 14 February 2025. The domain itself was registered three days earlier, on 11 February 2025 at 16:51:57 GMT.
+Historical DNS records show `yasomawork[.]space` resolving to `45.130.41[.]81` on 14 February 2025. The domain itself was registered three days earlier, on 11 February 2025 at 16:51:57 GMT. We can see, from the chat logs, Diesel Vortex was active during this time. 
 
 RDAP data shows the domain was registered through the Russian provider *BEGET-RU*. The associated IP address was also hosted on infrastructure allocated to Beget.
 
