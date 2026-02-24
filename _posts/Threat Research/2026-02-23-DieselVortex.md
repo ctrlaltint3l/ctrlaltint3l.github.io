@@ -46,8 +46,8 @@ To perform **Double Brokering**, criminal gangs might attempt to impersonate kno
 
 Regardless of the method, these schemes typically require two capabilities:
 
-1) Access to freight systems 
-2) A credible carrier persona (MC/DOT + email + phone presence) 
+1. Access to freight systems 
+2. A credible carrier persona (MC/DOT + email + phone presence) 
 
 # Phishing in Yerevan
 
