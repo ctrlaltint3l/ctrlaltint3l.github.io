@@ -15,7 +15,7 @@ toc: true
 
 # Overview
 
-In February 2026, *Ctrl-Alt-Intel* and *Have I Been Squatted* identified a financially motivated threat actor we've tracked as **Diesel Vortex**. The group operate a phishing-as-a-service platform branded *Global Profit* or *MC Profit Always* and harvested more than 1,500 unique credentials belonging to Western logistics, trucking, and transportation companies.
+In February 2026, *Ctrl-Alt-Intel* and *Have I Been Squatted* identified a financially motivated threat actor we've tracked as **Diesel Vortex**. The group operate a phishing-as-a-service platform branded *Global Profit* or *MC Profit Always* and harvested more than 1,600 unique credentials belonging to Western logistics, trucking, and transportation companies.
 
 *Have I Been Squatted* retrieved and analysed source code from the *Global Profit* phishing platform, which provided visibility into both infrastructure and operations. Telegram webhook logs embedded within the platform exposed months of internal coordination between operators. 
 
