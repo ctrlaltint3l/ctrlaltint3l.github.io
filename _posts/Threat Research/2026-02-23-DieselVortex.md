@@ -95,7 +95,7 @@ Most messages were written in Armenian using Latin script. Where possible, we tr
 [![1](/assets/images/cargo/17.png){: .align-center .img-border}](/assets/images/cargo/17.png)
 <p class="figure-caption">Translated Chat Excerpt</p>
 
-Two members of **Diesel Vortex** discuss whether they have an "do we have an MC with 250k cargo?". This suggests they’re looking for a usable carrier identity (or a compromised carrier account) suitable for high-value freight. In the freight ecosystem, higher cargo values typically mean stricter verification and insurance requirements, indicating the group is planning for higher-trust, higher-value loads rather than relying on opportunistic phishing alone.
+Two members of **Diesel Vortex** discussed, "do we have an MC with 250k cargo?". This suggests they’re looking for a usable carrier identity (or a compromised carrier account) suitable for high-value freight. In the freight ecosystem, higher cargo values typically mean stricter verification and insurance requirements, indicating the group is planning for higher-trust, higher-value loads rather than relying on opportunistic phishing alone.
 
 ### Links to Armenia 
 
