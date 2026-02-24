@@ -19,7 +19,7 @@ In February 2026, *Ctrl-Alt-Intel* and *Have I Been Squatted* identified a finan
 
 *Have I Been Squatted* retrieved and analysed source code from the *Global Profit* phishing platform, which provided visibility into both infrastructure and operations. Telegram webhook logs embedded within the platform exposed months of internal coordination between operators. 
 
-Linguistic analysis of those logs indicates Armenian-speaking actors targeting companies in the logistics sector. Conversations reference impersonation of freight brokers, use of voice phishing, and deployment of remote management tools to access internal systems. The objective was consistent with cargo diversion and goods theft.
+Linguistic analysis of those logs indicates Armenian-speaking actors targeting companies in the logistics sector. Conversations reference impersonation of freight brokers, use of voice phishing, and deployment of remote management tools to access internal systems. The objective was consistent with cargo diversion.
 
 During infrastructure analysis, *Ctrl-Alt-Intel* identified a domain registration that linked the phishing panel to a Russian-registered email address. That same email appears linked to corporate records of potentially linked logistics and warehousing LLCs that reported over **14.3 billion rubles** (**$180+ million USD**) in annual revenue within 2024.
 
@@ -27,6 +27,20 @@ During infrastructure analysis, *Ctrl-Alt-Intel* identified a domain registratio
 <p class="figure-caption">Main Correlation Graph</p>
 
 > This research is based solely on open-source intelligence (OSINT) and analysis of materials obtained during technical investigation. References to individuals and Russian-registered limited liability companies (LLCs) are provided for research context only, based on publicly available records and observed technical artifacts. Any linkages described are hypotheses derived from correlational indicators and should not be interpreted as findings of guilt, intent, or legal liability.
+
+## Key Terminology
+
+Before jumping into private conversations of Armenian fraudsters, or the links to Russian LLCs, we will define some key terms which are relevant to this industry. 
+
+| Term | Definition |
+|------|-----------|
+| **Motor Carrier (MC)** | A company authorized by the *FMCSA* to transport goods for hire. Each carrier is assigned a unique MC number used for identification across the freight ecosystem. |
+| **FMCSA** | *Federal Motor Carrier Safety Administration* - the US federal agency that regulates trucking companies, issues operating authority, and maintains public safety records. |
+| **Freight Broker** | A licensed intermediary that connects shippers (companies with goods to move) with carriers (companies with trucks). Brokers arrange loads and handle payment, making them a high-value target for fraud. |
+| **DAT** | The largest digital freight marketplace in North America. Brokers post available loads, carriers search and book them. Access requires an MC number and verified credentials. |
+| **RMIS** | *Registry Monitoring Insurance Services*  a third-party compliance platform used by brokers to verify carrier insurance, authority, and safety records. Brokers require carriers to register through RMIS before assigning loads. **Diesel Vortex** cloned RMIS registration portals as their primary phishing vector. |
+| **Double Brokering** | A fraud scheme where a threat actor impersonates a legitimate carrier, books a load from a broker, then either re-brokers it to an actual carrier at a lower rate (pocketing the difference) or diverts the cargo entirely. |
+| **Blind Shipment** | A legitimate logistics term for a shipment where the shipper or receiver's identity is hidden from the driver. **Diesel Vortex** operators exploited this mechanism to obscure the fraud chain and prevent drivers from contacting the real broker. |
 
 # Phishing in Yerevan
 
@@ -46,11 +60,10 @@ The dominant chat, containing 1,255 messages, was conducted in Armenian using La
 
 * Credential harvesting results
 * MCs - Motor Carrier (companies that transport goods/cargo)
-* SMS / Call spoofing services
-* Remote, Monitoring & Management (RMM) tools
+* SMS, VOIP, SIP & Call spoofing services
+* Remote, Monitoring & Management (RMM) services
 
 Although 14 unique Telegram user IDs registered to the platform, the majority of the messages were sent by 4 users:
-
 
 | **User ID** | **username** | **# of messages** |
 |--------------|----------|----------------------------|
@@ -66,7 +79,7 @@ Although 14 unique Telegram user IDs registered to the platform, the majority of
 | 5712841521 | gts10 | 3 |
 | ... | ... | ... | 
 
-## Translated conversations using an LLM 
+## Translated conversations analysis
 
 Most messages were written in Armenian using Latin script. Where possible, we translated them to better understand campaign context. Seeing how the speak to each other, on the day to day, in their private Telegram chat provides a lot of insight. For some reason, some accounts only had their Telegram ID and not username. I've named these `TA1` and `TA2`. The other usernames were found within the logs.
 
@@ -74,6 +87,25 @@ Most messages were written in Armenian using Latin script. Where possible, we tr
 <p class="figure-caption">Translated Chat Excerpt</p>
 
 2 members of **Diesel Vortex** on the *Global Profit Platform* had a conversation with one asking "do we have an MC with 250k cargo?". Here they are referring to a compromised Motor Carrier with 250k worth of cargo. Although the currency is not stated - we presume they are discussing USD as they are targeting US companies. 
+
+This chat real
+
+### Links to Armenia 
+
+Besides conversing in Armenian Latin script, analysis of the Telegram webhook log reveals the below Armenian resedential IP addresses accessed the platform:
+
+* 78.109.70[.]111
+* 46.162.227[.]180
+* 46.36.114[.]119
+* 46.36.112[.]127
+
+Additionally, on the 22nd of April a member of this chat revealed he was in *Komitas*, located within *Yerevan, Armenia*:
+
+[![1](/assets/images/cargo/21.png){: .align-center .img-border}](/assets/images/cargo/21.png)
+<p class="figure-caption">Chat Log showing operator within Komitas</p>
+
+# 
+
 
 Please see [Have I Been Squatted's analysis](https://haveibeensquatted.com/blog/diesel-vortex-inside-the-russian-cybercrime-group-targeting-us-eu-freight#language-geography-and-operational-patterns) for further details.
 
@@ -186,7 +218,7 @@ Using 1 Ruble = 0.013 USD:
 
 Between 2021 and 2024, *UNIX Group LLC* scaled from sub-million revenue to more than $150 million annually. Net profit margins in 2023 exceeded 17 percent.
 
-We have no evidence to prove these funds have originated from cargo theft, nor is *Ctrl-Alt-Intel* suggesting this. At minimum, the overlap establishes the identity linked to the email, that was used for registration of the phishing infrastructure, operates or has operated companies in the same sector targeted by **Diesel Vortex**.
+We have no evidence to prove these funds have originated from cargo theft, nor is *Ctrl-Alt-Intel* suggesting this. At minimum, the overlap establishes that the registrant of phishing infrastructure operates or has operated companies in the same sector targeted by **Diesel Vortex**.
 
 [![11](/assets/images/cargo/14.png){: .align-center .img-border}](/assets/images/cargo/14.png)
 <p class="figure-caption">Correlation Graph #1</p>
