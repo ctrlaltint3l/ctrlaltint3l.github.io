@@ -4,7 +4,7 @@ classes: wide
 header:
   teaser: /assets/images/crypto/logo.png
 ribbon: black
-description: "A suspected DPRK-associated actor compromises crypto firms through React2Shell and valid AWS tokens, pillaging cloud environments and stealing proprietary exchange software and source code."
+description: "A suspected DPRK-associated actor compromises crypto orgs, pillaging cloud environments, stealing proprietary exchange software and source code."
 categories:
   - Threat Research
 tags:
