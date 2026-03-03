@@ -14,7 +14,7 @@ toc: true
 
 # Overview
 
-Following the February 2026 Middle-Eastern conflict, Ctrl-Alt-Intel researchers went hunting for exposed Iranian APT infrastructure. 
+Ctrl-Alt-Intel researchers went hunting for exposed Iranian APT infrastructure. 
 
 We identified and dumped C2 tooling, scripts, logs, victim data, and other operational artefacts from a VPS hosted in the Netherlands. Ctrl-Alt-Intel assesses with high-confidence this server is operated by **MuddyWater** (also tracked as *Static Kitten*, *Mango Sandstorm*, *Earth Vetala*, *Seedworm*, TA450), a cyber espionage group attributed as a subordinate element within **Iran's Ministry of Intelligence and Security** (MOIS).
 
