@@ -28,7 +28,7 @@ This blog details the reconnaissance, initial access, command and control, and p
 
 MuddyWater was observed leveraging **Shodan** and **Nuclei** to identify potential vulnerable targets. Additionally, **subfinder** and **ffuf** were leveraged to perform enumeration of target web applications: 
 
-## Subfinder / ffuf 
+## Subfinder / ffuf dditionally scanned
 
 ```bash
 subfinder -d clearview.ai -o out-clearview..txt
@@ -475,9 +475,19 @@ This assessment is based on the convergence of victimology, tooling overlaps wit
 
 * **Exploitation of edge devices** - Exploitation of multiple Fortinet CVEs aligns with a [2021 CISA/FBI joint advisory](https://www.cisa.gov/news-events/cybersecurity-advisories/aa21-321a) documenting Iranian state-sponsored actors exploiting Fortinet vulnerabilities since at least March 2021. Similarly, this actor targeted Exchange servers and deployed webshells to Portuguese government infrastructure, consistent with *MuddyWater*'s well-documented history of exploiting Microsoft Exchange for initial access, as highlighted in the same CISA advisories.
 
+# Conclusion
+
+The exposed infrastructure detailed in this blog provides a broad view into a *MuddyWater* operation - from initial reconnaissance through to data exfiltration. What stands out is not the sophistication of any single tool or malware, but the breadth of the operation: countless organisations targeted, multiple custom-developed C2 frameworks, exploitation of over a dozen CVEs including novel SQL injection vulnerabilities, password spraying campaigns, Ethereum-based C2 resolution, and multiple exfiltration channels spanning cloud storage & EC2 instances. 
+
+*MuddyWater* continues to demonstrate a willingness to rapidly adopt public exploit code, modify it for operational use, and deploy it at scale - all while developing custom tooling in parallel. The targeting observed here - spanning Israeli healthcare and immigration organisations, Jordanian government webmail, an Egyptian national airline, UAE enterprises, and even an Iranian domestic marketplace - reinforces that MOIS collection priorities remain broad, aggressive, and unconstrained by national borders, including their own.
+
+Perhaps most notably, the repeated operational security failures that enabled this research - exposed open-directories, hardcoded credentials, reused infrastructure across campaigns, and server-side source code left accessible.
+
+Ctrl-Alt-Intel will continue to monitor *MuddyWater* infrastructure and will publish updates as new findings emerge. Defenders are encouraged to review the IOCs and MITRE ATT&CK mappings provided below.
+
 # Acknowledgements 
 
-Firstly, we would like to thank Security Researcher [@ice_wzl_cyber](https://x.com/ice_wzl_cyber) for his collaboration, insight and analysis into this *MuddyWater* campaign and blog. 
+Firstly, we would like to thank Security Researcher [@ice_wzl_cyber](https://x.com/ice_wzl_cyber) for his collaboration, insight and analysis into this *MuddyWater* campaign. 
  
 Whilst writing this blog, Security Researcher [@nahamike01](https://x.com/nahamike01) also observed **KeyC2** & **Tsundere Botnet** activity linked to *MuddyWater* campaigns:
 
