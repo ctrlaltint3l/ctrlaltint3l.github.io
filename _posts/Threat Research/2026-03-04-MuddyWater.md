@@ -518,7 +518,7 @@ Whilst writing this blog, Security Researcher [@nahamike01](https://x.com/nahami
 
 | Tactic | ID | Technique | Observation |
 |---|---|---|---|
-| **Reconnaissance** | [T1595.002](https://attack.mitre.org/techniques/T1595/002/) | Active Scanning: Vulnerability Scanning | Nuclei used to mass-scan for Ivanti EPMM CVE-2026-1281 |
+| **Reconnaissance** | [T1595.002](https://attack.mitre.org/techniques/T1595/002/) | Active Scanning: Vulnerability Scanning | Nuclei used to mass-scan for CVEs |
 | **Reconnaissance** | [T1590.002](https://attack.mitre.org/techniques/T1590/002/) | Gather Victim Network Information: DNS | `subfinder` used for subdomain enumeration of target organisations |
 | **Reconnaissance** | [T1595.003](https://attack.mitre.org/techniques/T1595/003/) | Active Scanning: Wordlist Scanning | `ffuf` directory brute-forcing against target web applications |
 | **Resource Development** | [T1583.003](https://attack.mitre.org/techniques/T1583/003/) | Acquire Infrastructure: Virtual Private Server | Multiple VPS used to host C2 tooling and operational scripts |
