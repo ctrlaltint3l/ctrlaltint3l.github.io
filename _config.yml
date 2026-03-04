@@ -91,7 +91,7 @@ analytics:
 
 # Site Author
 author:
-  name: "Ctrl-Alt-Int3l"
+  name: "Ctrl-Alt-Intel"
   avatar: /assets/images/site_data/img.jpg # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio: "Threat Research"
   email:
