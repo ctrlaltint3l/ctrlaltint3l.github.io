@@ -20,7 +20,7 @@ We identified and dumped C2 tooling, scripts, logs, victim data, and other opera
 
 Repeated operational security failures by the operators allowed our researchers to pivot using [Hunt.io](https://hunt.io/) to identify additional infrastructure that we also attribute to *MuddyWater*.
 
-This blog details the reconnaissance, initial access, command and control, and post-exploitation tradecraft observed - including two developed C2s, a Tsundere Botnet using Ethereum smart contracts, and the targeting of organisations across Israel, Jordan, Egypt, the UAE, Portugal, and the United States.
+This blog details the reconnaissance, initial access, command and control, and post-exploitation tradecraft observed - including 3+ developed C2s, a Tsundere Botnet using Ethereum smart contracts, and the targeting of organisations across Israel, Jordan, Egypt, the UAE, Portugal, and the United States.
 
 > Ctrl-Alt-Intel is not politically affiliated and does not conduct research in support of any government, ideology, or political agenda. The findings presented here are the result of independent threat intelligence research and are shared openly with the security community to help defenders identify, detect, and mitigate threats
 
