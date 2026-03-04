@@ -28,7 +28,7 @@ This blog details the reconnaissance, initial access, command and control, and p
 
 MuddyWater was observed leveraging **Shodan** and **Nuclei** to identify potential vulnerable targets. Additionally, **subfinder** and **ffuf** were leveraged to perform enumeration of target web applications: 
 
-## Subfinder / ffuf dditionally scanned
+## Subfinder / ffuf scanned
 
 ```bash
 subfinder -d clearview.ai -o out-clearview..txt
