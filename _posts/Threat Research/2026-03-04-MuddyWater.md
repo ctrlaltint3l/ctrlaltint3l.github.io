@@ -409,7 +409,7 @@ It appears *MuddyWater* is also operating an EC2 server used for exfiltration on
 
 ### EgyptAir
 
-The Python HTTP exfiltration server was primarily used to steal data from EgyptAir or Egyptian nationals.
+The Python HTTP exfiltration server was primarily used to steal data from EgyptAir or visa/passports for Egyptian nationals.
 
 This data included, but was not limited to:
 
