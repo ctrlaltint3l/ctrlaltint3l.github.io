@@ -492,7 +492,7 @@ Firstly, we would like to thank Security Researcher [@ice_wzl_cyber](https://x.c
 Whilst writing this blog, Security Researcher [@nahamike01](https://x.com/nahamike01) also observed **KeyC2** & **Tsundere Botnet** activity linked to *MuddyWater* campaigns:
 
 [![1](/assets/images/muddy/10.png){: .align-center .img-border}](/assets/images/muddy/10.png)
-<p class="figure-caption">@nahamike01 Tweet</p>  s
+<p class="figure-caption">@nahamike01 Tweet</p>  
 
 # IOCs
 
