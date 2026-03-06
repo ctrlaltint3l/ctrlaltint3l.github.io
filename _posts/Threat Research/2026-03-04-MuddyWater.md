@@ -527,7 +527,7 @@ Whilst writing this blog, Security Researcher [@nahamike01](https://x.com/nahami
 | **Resource Development** | [T1588.002](https://attack.mitre.org/techniques/T1588/002/) | Obtain Capabilities: Tool | Open-source tools: Neo-reGeorg, resocks, revsocks, patator |
 | **Initial Access** | [T1190](https://attack.mitre.org/techniques/T1190/) | Exploit Public-Facing Application | Exploitation of Fortinet, Ivanti, Exchange, BeyondTrust, and novel SQLi |
 | **Initial Access** | [T1110.003](https://attack.mitre.org/techniques/T1110/003/) | Brute Force: Password Spraying | OWA password spraying against Israeli, Jordanian, and UAE targets |
-| **Initial Access** | [T1110.001](https://attack.mitre.org/techniques/T1110/001/) | Brute Force: Password Guessing | `patator` SMTP brute-force against NMDC Group mail server |
+| **Initial Access** | [T1110.001](https://attack.mitre.org/techniques/T1110/001/) | Brute Force: Password Guessing | `patator` SMTP brute-force against mail servers |
 | **Discovery** | [T1082](https://attack.mitre.org/techniques/T1082/) | System Information Discovery | ArenaC2, KeyC2, and PersianC2 all collect OS version, architecture, VM status, and domain membership at check-in |
 | **Execution** | [T1059.001](https://attack.mitre.org/techniques/T1059/001/) | Command and Scripting Interpreter: PowerShell | `reset.ps1` - Tsundere Bot PowerShell loader decrypts and stages Node.js payloads |
 | **Execution** | [T1059.007](https://attack.mitre.org/techniques/T1059/007/) | Command and Scripting Interpreter: JavaScript | Obfuscated Node.js payloads (`VfZUSQi6oerKau.js`, `sysuu2etiprun.js`) |
