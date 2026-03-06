@@ -494,6 +494,15 @@ Whilst writing this blog, Security Researcher [@nahamike01](https://x.com/nahami
 [![1](/assets/images/muddy/10.png){: .align-center .img-border}](/assets/images/muddy/10.png)
 <p class="figure-caption">@nahamike01 Tweet</p>  
 
+## Huntress
+
+On 06/03/26, Huntress released a blog [Clearing the Water: Unmasking an Attack Chain of MuddyWater](https://www.huntress.com/blog/muddywater-attack-chain) exposing the kill-chain from an Iranian APT intrusion that they contained. 
+
+[![1](/assets/images/muddy/13.png){: .align-center .img-border}](/assets/images/muddy/13.png)
+<p class="figure-caption">Huntress blog</p>  
+
+It was interesting to see the same indicator that inspired this blog, used in the wild. Additionally, further overlaps in indicators were observed with [Group-IB](https://www.group-ib.com/blog/muddywater-infrastructure-malware/) & [Hunt.io](https://hunt.io/blog/iranian-apt-infrastructure-state-aligned-clusters). We wanted to acknowledge the work by [Jamie Levy](https://www.huntress.com/authors/jamie-levy) & [Harlan Carvey](https://www.huntress.com/authors/harlan-carvey) breaking down what MuddyWater tradecraft in-the-wild. 
+
 # IOCs
 
 | Indicator | Type | Context |
