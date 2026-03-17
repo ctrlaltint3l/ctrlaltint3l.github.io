@@ -744,6 +744,8 @@ They evolved their indicators after CERT-UA's October 2024 disclosure, potential
 
 Ctrl-Alt-Intel would like to thank [Hunt.io](https://hunt.io) for their initial discovery, [CERT-UA](https://cert.gov.ua/article/6281123) for their continued vigilance in tracking this infrastructure, and [ESET](https://www.welivesecurity.com/en/eset-research/operation-roundpress/) for their broader mapping of the Operation RoundPress campaign.
 
+We also wanted to thank [Will Thomas](https://x.com/BushidoToken) from Team Cymru for assisting with victim notification and ensuring the exposed open-directory and corresponding infrastructure were taken down.
+
 We also want to thank Ctrl-Alt-Intel researcher, [@ice_wzl_cyber](https://x.com/ice_wzl_cyber), for his contributions in tracking this campaign and writing this blog.
 
 # References
