@@ -619,6 +619,8 @@ The **vast majority** (826 out of 853 entries) redirected to `advenwolf@proton.m
 
 A smaller set (27 entries) redirected to addresses at `gov.vppdr[.]com`, an attacker-controlled domain that typosquats the legitimate Ukrainian prosecution domain `vppdr.gp.gov.ua`. This domain is significant as it typosquats to Ukrainian government prosecutor’s office, specifically the southern-region defense specialization.
 
+The pivot from using `@proton.me` to unique typosquatted email addresses as recipients shows clear campaign evolution with focus on evasion by making the forwarding emails appear more legitimate.   
+
 > The Romanian Air Force (`roaf.ro`) was the **single most targeted organisation** in the Sieve data, thankfully **every single attempt failed**. Their mail server did not support ManageSieve, which inadvertently protected them from FancyBear's most persistent access technique.
 
 ## TOTP/2FA Extraction
