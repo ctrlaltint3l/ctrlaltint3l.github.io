@@ -27,7 +27,7 @@ Building on initial reported findings, Ctrl-Alt-Intel discovered a **second expo
 * **140+ Sieve forwarding rules** silently redirecting every incoming email to an attacker-controlled mailbox
 * **11,500+ contact email addresses** harvested from victim address books, mapping entire communication networks
 
-FancyBear successfully compromised **government and military entities** across **Ukraine, Romania, Bulgaria, Greece, Serbia, and North Macedonia** - which included email addresses linked to **four NATO member countries**. We also identified a previously unreported **SquirrelMail** XSS payload, expanding the known scope of webmail platforms targeted in this campaign.
+FancyBear successfully compromised **government and military entities** across **Ukraine, Romania, Bulgaria, Greece and Serbia** - which included email addresses linked to **multiple NATO member countries**. We also identified a previously unreported **SquirrelMail** XSS payload, expanding the known scope of webmail platforms targeted in this campaign.
 
 Ctrl-Alt-Intel linked this infrastructure back to [CERT-UA reporting from September 2024](https://cert.gov.ua/article/6281123), meaning FancyBear operated from the **same C2 server for over 500 days**, long after it was publicly attributed to GRU-linked operations. Despite being classified as a "sophisticated" threat, FancyBear demonstrated **poor operational security on multiple counts**, giving us rare, near-complete visibility into Russian espionage operations.
 
@@ -42,7 +42,6 @@ Ctrl-Alt-Intel linked this infrastructure back to [CERT-UA reporting from Septem
 | Greece | 30 | National Defence General Staff / GEETHA (28), Military (2) |
 | Serbia | 8 | Ministry of Defence (6), Military Academy (1), Military Medical Academy (1) |
 | Bulgaria | 4 | Government (4) |
-| North Macedonia | 1 | Government (1) |
 
 ## Geopolitical significance 
 
@@ -103,10 +102,10 @@ Notably, from the open-directory we analysed there were no `.profile` or `.bash_
 
 We were **extremely shocked** to see the same C2 server IP address `203.161.50[.]145`, attributed with medium-confidence to *FancyBear* by the [Ukranian CERT](https://cert.gov.ua/article/6281123) on **25th October 2024**. Thankfully, although it took nearly two years, *FancyBear* made the mistake of exposing their operation from this same server. 
 
-Defenders and Intelligence analysts are often reminded of the volatility of IP addresses with the **Pyramid of Pain**. This conceptual framework categorizes indicators based on the difficulty ("pain") they cause attackers to alter. Ranging from trivial to change (bottom: Hash Values, IP Addresses) to highly difficult (top: TTPs), it helps security teams focus on high-impact detections:
+Defenders and Intelligence analysts are often reminded of the volatility of IP addresses with the **Pyramid of Pain**. This conceptual framework created by [David J. Bianco](https://www.sans.org/profiles/david-bianco) that categorizes indicators based on the difficulty ("pain") they cause attackers to alter. Ranging from trivial to change (bottom: Hash Values, IP Addresses) to highly difficult (top: TTPs), it helps security teams focus on high-impact detections:
 
 [![1](/assets/images/fancy/3.jpg){: .align-center .img-border}](/assets/images/muddy/3.jpg)
-<p class="figure-caption">Pyramid of Pain - ref. AttackIQ</p>  
+<p class="figure-caption">Pyramid of Pain - ref. David J. Bianco</p>  
 
 In this case, such frameworks didn't apply in practice, *FancyBear* continued to operate from the same server that was publicly attributed to *FancyBear* over **500 days ago**.  
 
@@ -760,7 +759,7 @@ We also want to thank Ctrl-Alt-Intel researcher, [@ice_wzl_cyber](https://x.com/
 | Mandiant / Google Cloud | [APT28: A Window into Russia's Cyber Espionage Operations](https://cloud.google.com/blog/topics/threat-intelligence/apt28-a-window-into-russias-cyber-espionage-operations) |
 | Microsoft | [Forest Blizzard / STRONTIUM Threat Profile](https://www.microsoft.com/en-us/security/security-insider/threat-landscape/forest-blizzard) |
 | ESET | [Sednit: A Window into Russian Espionage Operations (PDF)](https://web-assets.esetstatic.com/wls/2016/10/eset-sednit-part-2.pdf) |
-| AttackIQ | [Pyramid of Pain](https://www.attackiq.com/glossary/pyramid-of-pain-2/) |
+| David J. Bianco | [Pyramid of Pain](https://detect-respond.blogspot.com/2013/03/the-pyramid-of-pain.html) |
 | Reuters | [Romania, Bulgaria, Greece Sign Deal to Boost Military Mobility](https://www.reuters.com/world/europe/romania-bulgaria-greece-sign-deal-boost-military-mobility-2024-07-11) |
 | Reuters | [Greece to Train Ukrainian F-16 Pilots, Zelensky Says](https://www.reuters.com/world/europe/greece-train-ukrainian-f-16-pilots-zelenskiy-says-2023-08-21) |
 | Reuters | [Serbia Says It Will Investigate Russian Accusations on Arms](https://www.reuters.com/business/aerospace-defense/serbia-says-it-will-investigate-russian-accusations-that-it-ships-arms-ukraine-2025-05-30) |
