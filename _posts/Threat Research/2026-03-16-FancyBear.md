@@ -22,7 +22,7 @@ The UK NCSC, part of GCHQ, has previously [assessed](https://www.ncsc.gov.uk/fil
 
 Building on initial reported findings, Ctrl-Alt-Intel discovered a **second exposed open-directory** on the same server. One that contained FancyBear's C2 source code, additional payloads, telemetry logs, exfiltrated data and evidence of further campaigns. What we found inside was staggering:
 
-* **2,800+ emails** exfiltrated from government and military mailboxes
+* **11,000+ emails** exfiltrated from government and military mailboxes
 * **240+ sets of stolen credentials**, including passwords and TOTP 2FA secrets
 * **140+ Sieve forwarding rules** silently redirecting every incoming email to an attacker-controlled mailbox
 * **11,500+ contact email addresses** harvested from victim address books, mapping entire communication networks
