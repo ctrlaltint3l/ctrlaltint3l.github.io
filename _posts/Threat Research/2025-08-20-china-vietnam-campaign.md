@@ -13,8 +13,8 @@ tags:
   - China
 toc: true
 redirect_from:
-  - /threat%20research/FancyBear/
-  - /threat research/FancyBear/
+  - /threat%20research/china-vietnam-campaign/
+  - /threat research/china-vietnam-campaign/
 ---
 
 > This personal research is based solely on open-source intelligence (OSINT) and technical analysis of available data. The attribution of activity to suspected Chinese threat actors is made on the basis of observed infrastructure, malware, and tactics, techniques, and procedures (TTPs) and strong links to known adversaries. It does not reflect any political stance, the views of my employer, and no conclusions should be drawn beyond the scope of this technical research. The goal of this publication is to share threat intelligence and raise awareness of cyber activity impacting Vietnam, not to promote or endorse any political narrative.
