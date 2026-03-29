@@ -11,7 +11,7 @@ tags:
   - Threat Research
 toc: true
 redirect_from:
-  - /threat%20research/FancyBear/
+  - /threat%20research/DPRK-Crypto-Heist/
   - /threat research/FancyBear/
 ---
 

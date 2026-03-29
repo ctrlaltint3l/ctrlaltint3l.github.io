@@ -11,8 +11,8 @@ tags:
   - Threat Research
 toc: true
 redirect_from:
-  - /threat%20research/FancyBear/
-  - /threat research/FancyBear/
+  - /threat%20research/Aeternum-Part-1/
+  - /threat research/Aeternum-Part-1/
 ---
 
 # Aeternum C2 BotNet Loader

@@ -11,8 +11,8 @@ tags:
   - Threat Research
 toc: true
 redirect_from:
-  - /threat%20research/FancyBear/
-  - /threat research/FancyBear/
+  - /threat%20research/Devman-RaaS/
+  - /threat research/Devman-RaaS/
 ---
 
 # OPSEC
