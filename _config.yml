@@ -190,6 +190,7 @@ whitelist:
   - jekyll-gist
   - jekyll-feed
   - jekyll-include-cache
+  - jekyll-redirect-from
 
 # Archives
 #  Type
@@ -239,3 +240,9 @@ defaults:
       comments: false
       share: false
       related: false
+  # Threat Research posts - use /research/ prefix in URLs
+  - scope:
+      path: "_posts/Threat Research"
+      type: posts
+    values:
+      permalink: /research/:title/
