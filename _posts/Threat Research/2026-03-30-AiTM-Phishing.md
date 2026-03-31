@@ -372,6 +372,15 @@ This marks another step in Phishing-as-a-Service platforms. What makes UPMI nota
 
 The exposed master server gave us full visibility into the developer's operation, including their licensing model, intelligence sharing infrastructure, operator dashboard, and the credentials tying it all together. We hope sharing this analysis helps defenders detect and disrupt campaigns leveraging this platform.
 
+# Acknowledgements 
+
+After publishing, security researcher [@SansLimit3](https://x.com/SansLimit3) performing further investigation and identified additional feature of the platform "UPMI Remote" which was linked to the Telegram bot account `@AlgorithmXbot`. The chat associated with the bot showed activity spanning from 2023:
+
+[![1](/assets/images/UPMI/13.jpg){: .align-center .img-border}](/assets/images/UPMI/13.jpg)
+<p class="figure-caption">UPMI Remote Screenfrom from @SansLimit3</p> 
+
+Additional IOCs were included within the [tweet](https://x.com/SansLimit3/status/2038762409897189753?s=20), which have been added to the below. 
+
 # IOCs
 
 | Type | Value | Context |
@@ -387,6 +396,8 @@ The exposed master server gave us full visibility into the developer's operation
 | IP Address | `64.95.13[.]174` | Evilginx VPS #2 (`cybernt.us`) |
 | IP Address | `193.111.125[.]137` | Primary sending server (Kamatera) |
 | IP Address | `103.101.202[.]72` | Secondary sending server (Kamatera) |
+| IP Address | `64.52.80[.]3` | UPMI Remote |
+| Domain | `brevantic[.]online` | UPMI Remote | 
 | Domain | `tms[.]ac` | Evilginx phishing domain |
 | Domain | `cybernt[.]us` | Evilginx phishing domain (standby) |
 | Domain | `docviewportal[.]com` | LinkShield encrypted URL decryption |
@@ -401,10 +412,13 @@ The exposed master server gave us full visibility into the developer's operation
 | Domain | `ventrisecure[.]com` | Sender domain (DKIM keys present) |
 | Domain | `ventracloud[.]com` | Evilginx phishing domain |
 | Domain | `brevantic[.]com` | Evilginx phishing domain |
+| Domain | `mcapilllotlivveoffice[.]com` | Phishing domain | 
 | Bot Username | `Mxlicense_control_bot` | License management bot |
 | Bot Username | `UPMi035bot` | Tracker alert bot |
 | URL Pattern | `go.docviewportal[.]com/d/<base64url_token>` | Encrypted phishing link |
 | URL Pattern | `webmail.tms[.]ac/djMfuXoi` | Default Evilginx lure URL |
+| Hash | `3192549bc2198bc3f4ed775c55102ddd131f1a2466f5459ebe23198d4a02105c` | UPMI Remote (MeshAgent) | 
+| Hash | `79b74ed25250b9b9fa60a710f0f93bbf9ec0155c006f2af453e278f2e5af8c6f` | UPMI Remote (MeshAgent) | 
 
 # MITRE ATT&CK
 
