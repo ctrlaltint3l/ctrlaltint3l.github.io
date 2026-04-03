@@ -2,6 +2,8 @@
 # and in what order. Use the post slug (filename without date and .md extension).
 # Reorder or remove entries to control what visitors see first.
 
+- slug: BuddyBoss-2
+- slug: BuddyBoss-1
 - slug: FancyBear
 - slug: MuddyWater
 - slug: china-vietnam-campaign
