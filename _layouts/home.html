@@ -1,19 +1,92 @@
 ---
-layout: archive
+layout: default
 ---
 
 {{ content }}
 
-<h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
+<!-- Hero Section -->
+<section class="home-hero">
+  <div class="home-hero__inner">
+    <p class="home-hero__eyebrow">Threat Research</p>
+    <h1 class="home-hero__title">Where Threats<br><span class="home-hero__accent">Get Dissected</span></h1>
+    <p class="home-hero__sub">Collaborative research investigating adversary operations, reversing malware, and tracking threat infrastructure.</p>
+  </div>
+</section>
 
-{% if paginator %}
-  {% assign posts = paginator.posts %}
-{% else %}
-  {% assign posts = site.posts %}
+<!-- Popular Research — Horizontal Scroll Carousel -->
+{% assign all_posts = site.posts %}
+{% assign featured_slugs = site.data.featured %}
+
+{% if featured_slugs and featured_slugs.size > 0 %}
+<section class="home-carousel-section">
+  <div class="home-carousel-header">
+    <h2 class="home-carousel-title">Popular Research</h2>
+    <div class="carousel-nav">
+      <button class="carousel-btn carousel-btn--prev" aria-label="Scroll left" type="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+      <button class="carousel-btn carousel-btn--next" aria-label="Scroll right" type="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+    </div>
+  </div>
+  <div class="home-carousel" id="trendingCarousel">
+    <div class="home-carousel__track">
+      {% for item in featured_slugs %}
+        {% assign match = nil %}
+        {% for post in all_posts %}
+          {% if post.slug == item.slug %}
+            {% assign match = post %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+        {% if match %}
+          {% if match.header.teaser %}
+            {% assign teaser = match.header.teaser %}
+          {% else %}
+            {% assign teaser = site.teaser %}
+          {% endif %}
+          <a href="{{ match.url | relative_url }}" class="carousel-card">
+            {% if teaser %}
+            <div class="carousel-card__img">
+              <img src="{{ teaser | relative_url }}" alt="{{ match.title | strip_html }}" loading="lazy">
+            </div>
+            {% endif %}
+            <div class="carousel-card__body">
+              <span class="carousel-card__tag">{{ match.categories | first }}</span>
+              <h3 class="carousel-card__title">{{ match.title | markdownify | remove: "<p>" | remove: "</p>" }}</h3>
+              <p class="carousel-card__desc">{{ match.description | default: match.excerpt | strip_html | truncate: 100 }}</p>
+              <div class="carousel-card__meta">
+                <time datetime="{{ match.date | date_to_xmlschema }}">{{ match.date | date: "%b %-d, %Y" }}</time>
+                <span class="meta-dot">&middot;</span>
+                {% assign words = match.content | number_of_words %}
+                {% assign mins = words | divided_by: 170 %}
+                {% if mins < 1 %}{% assign mins = 1 %}{% endif %}
+                <span>{{ mins }} min read</span>
+              </div>
+            </div>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
 {% endif %}
 
-{% for post in posts %}
-  {% include archive-single.html %}
-{% endfor %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var track = document.querySelector('.home-carousel__track');
+  var prevBtn = document.querySelector('.carousel-btn--prev');
+  var nextBtn = document.querySelector('.carousel-btn--next');
+  if (!track || !prevBtn || !nextBtn) return;
 
-{% include paginator.html %}
+  var scrollAmount = 340;
+
+  nextBtn.addEventListener('click', function() {
+    track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  });
+  prevBtn.addEventListener('click', function() {
+    track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  });
+});
+</script>

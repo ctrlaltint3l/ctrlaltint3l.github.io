@@ -1,6 +1,6 @@
 # main links
 main:
-  - title: "Threat Research"
-    url: categories/#research
-  - title: "About Us"
+  - title: "Research"
+    url: /categories/#research
+  - title: "About"
     url: /about/

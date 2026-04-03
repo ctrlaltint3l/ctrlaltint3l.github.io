@@ -1,5 +1,13 @@
 <meta charset="utf-8">
 
+<script>
+  // Apply saved theme immediately to prevent flash
+  (function() {
+    var theme = localStorage.getItem('cai-theme') || 'midnight';
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
 {% include seo.html %}
 
 <link href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ '/feed.xml' | relative_url }}{% endif %}" type="application/atom+xml" rel="alternate" title="{{ site.title }} Feed">

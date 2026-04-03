@@ -1,0 +1,18 @@
+# Popular Research — controls which posts appear in the homepage carousel
+# and in what order. Use the post slug (filename without date and .md extension).
+# Reorder or remove entries to control what visitors see first.
+
+- slug: FancyBear
+- slug: MuddyWater
+- slug: china-vietnam-campaign
+- slug: FortiWeb-Sliver
+- slug: DPRK-Crypto-Heist
+- slug: Devman-RaaS
+- slug: DieselVortex
+- slug: Aeternum-Part-1
+- slug: Aeternum-Part-2
+- slug: ErrTraffic
+- slug: KazakRAT
+- slug: React2Shell-Exploitation
+- slug: Scanning-CVE-2025-55182-for-the-greater-good
+- slug: UPMI-phishing

@@ -1,0 +1,78 @@
+<div class="theme-switcher">
+  <button class="theme-switcher__toggle" type="button" aria-label="Change theme" title="Change theme">
+    <svg class="theme-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </button>
+  <div class="theme-switcher__dropdown" hidden>
+    <button class="theme-option" data-theme="dark">
+      <span class="theme-swatch theme-swatch--dark"></span>
+      Dark
+    </button>
+    <button class="theme-option" data-theme="light">
+      <span class="theme-swatch theme-swatch--light"></span>
+      Light
+    </button>
+    <button class="theme-option" data-theme="midnight">
+      <span class="theme-swatch theme-swatch--midnight"></span>
+      Midnight
+    </button>
+    <button class="theme-option" data-theme="emerald">
+      <span class="theme-swatch theme-swatch--emerald"></span>
+      Emerald
+    </button>
+  </div>
+</div>
+
+<script>
+(function() {
+  var saved = localStorage.getItem('cai-theme') || 'midnight';
+  document.documentElement.setAttribute('data-theme', saved);
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var toggle = document.querySelector('.theme-switcher__toggle');
+    var dropdown = document.querySelector('.theme-switcher__dropdown');
+    if (!toggle || !dropdown) return;
+
+    toggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isHidden = dropdown.hasAttribute('hidden');
+      if (isHidden) {
+        dropdown.removeAttribute('hidden');
+      } else {
+        dropdown.setAttribute('hidden', '');
+      }
+    });
+
+    dropdown.querySelectorAll('.theme-option').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var theme = this.getAttribute('data-theme');
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('cai-theme', theme);
+        dropdown.setAttribute('hidden', '');
+        // Update active state
+        dropdown.querySelectorAll('.theme-option').forEach(function(b) { b.classList.remove('active'); });
+        this.classList.add('active');
+      });
+    });
+
+    // Mark current theme active
+    var current = document.documentElement.getAttribute('data-theme') || 'dark';
+    var activeBtn = dropdown.querySelector('[data-theme="' + current + '"]');
+    if (activeBtn) activeBtn.classList.add('active');
+
+    // Close dropdown on outside click
+    document.addEventListener('click', function() {
+      dropdown.setAttribute('hidden', '');
+    });
+  });
+})();
+</script>

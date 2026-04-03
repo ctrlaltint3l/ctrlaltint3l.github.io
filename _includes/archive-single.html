@@ -10,62 +10,50 @@
   {% assign title = post.title %}
 {% endif %}
 
-{% if post.ribbon %}
-  {% assign ribbon = post.ribbon %}
-{% else %}
-  {% assign ribbon = 'darkgrey' %}
-{% endif %}
+{% if include.type == "grid" %}
 
-
-<link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
-
-<a href="{{ post.url | relative_url }}" class="post-blog-card" style="text-decoration: none; 
-    --image-url: url({{ teaser }});
-    --ribbon: {{ ribbon }};">
-
-  <div class="post-meta">
-    <div class="post-ribbon">
-      <span class="post-ribbon4">{{ post.categories[0] }}</span>
+<div class="grid__item">
+  <a href="{{ post.url | relative_url }}" class="archive-card archive-card--grid">
+    {% if teaser %}
+    <div class="archive-card__img">
+      <img src="{{ teaser | relative_url }}" alt="{{ title | strip_html }}" loading="lazy">
     </div>
-  </div>
-
-  <div class="post-description">
-    <h1>{{ title }}</h1>
-    <p>  {{ post.description | truncate: 120}}</p>
-    
-    <p class="post-date page__meta">
-      {{post.date | date_to_string}}
-    </p>
-  
-    {% if post.read_time %}
-      <p class="post-time page__meta"><i class="far fa-clock" aria-hidden="true"></i> {% include read-time.html %}</p>
     {% endif %}
-
-  </div>
-</a>
-
-
-
-<!-- <div class="{{ include.type | default: "list" }}__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    {% if include.type == "grid" and teaser %}
-      <div class="archive__item-teaser">
-        <img src="{{ teaser | relative_url }}" alt="">
+    <div class="archive-card__body">
+      <h3 class="archive-card__title">{{ title }}</h3>
+      <div class="archive-card__meta">
+        {% if post.date %}<time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>{% endif %}
       </div>
-    {% endif %}
+    </div>
+  </a>
+</div>
 
-    <h2 class="archive__item-title" itemprop="headline">
-      {% if post.link %}
-        <a href="{{ post.link }}">{{ title }}</a> <a href="{{ post.url | relative_url }}" rel="permalink"><i class="fas fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
-      {% else %}
-        <a href="{{ post.url | relative_url }}" rel="permalink">{{ title }}</a>
+{% else %}
+
+<div class="list__item">
+  <a href="{{ post.url | relative_url }}" class="archive-card archive-card--list">
+    {% if teaser %}
+    <div class="archive-card__img">
+      <img src="{{ teaser | relative_url }}" alt="{{ title | strip_html }}" loading="lazy">
+    </div>
+    {% endif %}
+    <div class="archive-card__body">
+      <span class="archive-card__tag">{{ post.categories | first }}</span>
+      <h3 class="archive-card__title">{{ title }}</h3>
+      {% if post.description %}
+        <p class="archive-card__desc">{{ post.description | truncate: 140 }}</p>
+      {% elsif post.excerpt %}
+        <p class="archive-card__desc">{{ post.excerpt | strip_html | truncate: 140 }}</p>
       {% endif %}
-    </h2>
-    {% if post.read_time %}
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> {% include read-time.html %}</p>
-    {% endif %}
-    {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify | strip_html | truncate: 160 }}</p>{% endif %}
-    
+      <div class="archive-card__meta">
+        {% if post.date %}<time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>{% endif %}
+        {% if post.read_time %}
+          <span class="meta-dot">&middot;</span>
+          <span><i class="far fa-clock" aria-hidden="true"></i> {% include read-time.html %}</span>
+        {% endif %}
+      </div>
+    </div>
+  </a>
+</div>
 
-  </article>
-</div> -->
+{% endif %}
