@@ -191,7 +191,6 @@ whitelist:
   - jekyll-gist
   - jekyll-feed
   - jekyll-include-cache
-  - jekyll-redirect-from
 
 # Archives
 #  Type
